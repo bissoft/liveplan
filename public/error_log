@@ -1,0 +1,2 @@
+[07-Dec-2021 10:49:39 UTC] PHP Fatal error:  Trait 'Laravel\Cashier\Billable' not found in /home/stagokxg/dev.staggingserver.tech/app/User.php on line 18
+[29-Mar-2022 09:27:48 UTC] PHP Fatal error:  Cannot redeclare App\Http\Controllers\Admin\XeroController::BatchPayments() in /home/stagokxg/dev.staggingserver.tech/app/Http/Controllers/Admin/XeroController.php on line 669
