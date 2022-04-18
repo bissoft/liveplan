@@ -123,7 +123,7 @@ h6,
 .cs-accent_color_hover:hover,
 .comment-list .reply a,
 .cs-tab_links.cs-style2 .active a {
-  color: #00bb85;
+  color: #13b5ea;
 }
 
 .cs-accent_10_color,
@@ -181,27 +181,27 @@ a:hover,
 .cs-site_header.cs-style3 .cs-nav .cs-nav_list .current-menu-item > a,
 .cs-site_header.cs-style3 .cs-nav .cs-nav_list ul a:hover,
 .cs-site_header.cs-style2 .cs-nav .cs-nav_list .current-menu-item > a {
-  color: #00bb85;
+  color: #13b5ea;
 }
 
 .cs-accent_10_color_2,
 .cs-accent_10_color_2_hover:hover {
-  color: rgba(255, 131, 69, 0.1);
+  color: #13b5ea3d;
 }
 
 .cs-accent_20_color_2,
 .cs-accent_20_color_2_hover:hover {
-  color: rgba(255, 131, 69, 0.2);
+  color: #13b5ea3d;
 }
 
 .cs-accent_30_color_2,
 .cs-accent_30_color_2_hover:hover {
-  color: rgba(255, 131, 69, 0.3);
+  color: #13b5ea3d;
 }
 
 .cs-accent_40_color_2,
 .cs-accent_40_color_2_hover:hover {
-  color: rgba(255, 131, 69, 0.4);
+  color: #13b5ea3d;
 }
 
 .cs-accent_50_color_2,
@@ -234,7 +234,7 @@ a:hover,
 .cs-pricing_table.cs-style2:hover .cs-pricing_btn,
 .cs-site_header.cs-style2 .cs-hamburger.active,
 .cs-tab_links.cs-style5 .active a {
-  background-color: #00bb85;
+  background-color: #13b5ea;
 }
 
 .cs-accent_1_bg,
@@ -279,17 +279,17 @@ a:hover,
 
 .cs-accent_9_bg,
 .cs-accent_9_bg_hover:hover {
-  background-color: rgba(0, 187, 133, 0.09);
+  background-color:#13b5ea3d;
 }
 
 .cs-accent_10_bg,
 .cs-accent_10_bg_hover:hover {
-  background-color: rgba(0, 187, 133, 0.1);
+  background-color:#13b5ea3d;
 }
 
 .cs-accent_15_bg,
 .cs-accent_15_bg_hover:hover {
-  background-color: rgba(0, 187, 133, 0.15);
+  background-color: #13b5ea3d;
 }
 
 .cs-accent_20_bg,
@@ -351,7 +351,7 @@ a:hover,
 .cs-accent_bg_2_hover:hover,
 .cs-site_header.cs-style2.cs-sticky-active,
 .cs-team_member.cs-style4 .cs-member_social_toggle.active {
-  background-color: #00bb85;
+  background-color: #13b5ea;
 }
 
 .cs-accent_1_bg_2,
@@ -431,7 +431,7 @@ a:hover,
 
 .cs-accent_40_bg_2,
 .cs-accent_40_bg_2_hover:hover {
-  background-color: rgba(255, 131, 69, 0.4);
+  background-color: #13b5ea3d;
 }
 
 .cs-accent_45_bg_2,
@@ -472,7 +472,7 @@ a:hover,
 .cs-accent_border_hover:hover,
 .cs-slider_nav_1 .slick-current .cs-slider_mini_thumb,
 .ui-slider .ui-state-active {
-  border-color: #00bb85;
+  border-color: #13b5ea;
 }
 
 .cs-accent_10_border,
@@ -534,7 +534,7 @@ a:hover,
 
 .cs-accent_40_border_2,
 .cs-accent_40_border_2_hover:hover {
-  border-color: rgba(255, 131, 69, 0.4);
+  border-color: #13b5ea3d;
 }
 
 .cs-player_btn.cs-style2 .cs-player_btn_in::after {
@@ -543,17 +543,17 @@ a:hover,
 }
 
 .cs-nav .cs-nav_list ul a:hover {
-  background-color: rgba(255, 131, 69, 0.1);
+  background-color: #13b5ea3d;
   color: #ff8345;
 }
 
 .cs-team_member.cs-style1:hover .cs-member_name {
-  color: #00bb85;
+  color: #13b5ea;
 }
 
 .cs-gradient_bg_1 {
   background: -webkit-gradient(linear, left top, right top, from(#eefffa), to(rgba(238, 255, 250, 0)));
-  background: linear-gradient(90deg, #eefffa 0%, rgba(238, 255, 250, 0) 100%);
+  background: linear-gradient(90deg, #eefffa 0%, rgba(19, 181, 234, 0.10) 100%);
 }
 
 .cs-gradient_bg_2 {
@@ -566,11 +566,11 @@ a:hover,
 }
 
 .cs-btn.cs-style6.cs-accent_bg:hover .cs-btn_icon {
-  background-color: #00bb85;
+  background-color: #13b5ea;
 }
 
 .cs-btn.cs-style6.cs-accent_color .cs-btn_icon {
-  background-color: #00bb85;
+  background-color: #13b5ea;
 }
 
 .cs-btn.cs-style6.cs-accent_color:hover .cs-btn_icon {
@@ -590,11 +590,11 @@ a:hover,
 }
 
 .cs-btn.cs-style6.cs-accent_color_2:hover .cs-btn_icon {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: #13b5ea3d;
 }
 
 .cs-tab_links.cs-style1 {
-  background-color: rgba(0, 187, 133, 0.15);
+  background-color: #13b5ea3d;
 }
 
 .cs-tab_links.cs-style1 li:not(.active) a:hover {
@@ -603,7 +603,7 @@ a:hover,
 }
 
 .cs-tab_links.cs-style1 .active a {
-  background-color: #00bb85;
+  background-color: #13b5ea;
 }
 
 .cs-tab_links.cs-style3 a {
@@ -621,8 +621,8 @@ a:hover,
 }
 
 .cs-portfolio.cs-style2 .cs-portfolio_info {
-  background: -webkit-gradient(linear, left bottom, left top, from(#00bb85), to(rgba(5, 144, 255, 0)));
-  background: linear-gradient(0deg, #00bb85 0%, rgba(5, 144, 255, 0) 100%);
+  background: -webkit-gradient(linear, left bottom, left top, from(#13b5ea), to(rgba(5, 144, 255, 0)));
+  background: linear-gradient(0deg, #13b5ea 0%, rgba(5, 144, 255, 0) 100%);
 }
 
 .cs-hero.cs-style6,
@@ -641,7 +641,7 @@ a:hover,
 }
 
 .cs-icon_box.cs-style7:hover .cs-icon_box_icon {
-  background-color: #00bb85;
+  background-color: #13b5ea;
 }
 
 .cs-icon_box.cs-style7:hover .cs-icon_box_info {
@@ -649,7 +649,7 @@ a:hover,
 }
 
 .cs-icon_box.cs-style7:hover .cs-icon_box_title {
-  color: #00bb85;
+  color: #13b5ea;
 }
 
 .cs-team_member.cs-style7:hover .cs-team_member_bg {
@@ -669,20 +669,20 @@ a:hover,
 }
 
 [class*="cs-gradient_overlay_"]::after {
-  background: linear-gradient(60deg, #ff8345 13%, #00bb85 100%);
+  background: linear-gradient(60deg, #ff8345 13%, #13b5ea 100%);
 }
 
 .cs-post_pagination.cs-style1 .page-numbers .page-number.next {
-  color: #00bb85;
+  color: #13b5ea;
 }
 
 .cs-post_pagination.cs-style1 .page-numbers .page-number:hover {
   background-color: rgba(0, 187, 133, 0.1);
-  color: #00bb85;
+  color: #13b5ea;
 }
 
 .cs-post_pagination.cs-style1 .page-numbers .page-number.current {
-  background-color: #00bb85;
+  background-color: #13b5ea;
 }
 
 .cs-post6_wrap .cs-post.cs-style6:not(:last-child) {
@@ -690,20 +690,20 @@ a:hover,
 }
 
 .cs-team_member.cs-style3 .cs-member_info:after {
-  background: linear-gradient(45deg, #ff8345 0%, #00bb85 100%);
+  background: linear-gradient(45deg, #ff8345 0%, #13b5ea 100%);
 }
 
 .cs-team_member.cs-style3 .cs-member_btn {
-  background: linear-gradient(45deg, #ff8345 0%, #00bb85 100%);
+  background: linear-gradient(45deg, #ff8345 0%, #13b5ea 100%);
 }
 
 .cs-counter.cs-style3 .cs-counter_icon:after {
-  background: linear-gradient(45deg, #ff8345 0%, #00bb85 100%);
+  background: linear-gradient(45deg, #ff8345 0%, #13b5ea 100%);
 }
 
 .cs-post_pagination.cs-style2 .page-numbers a.page-number:hover,
 .cs-post_pagination.cs-style2 .page-numbers .current {
-  color: #00bb85;
+  color: #13b5ea;
   border-color: rgba(0, 187, 133, 0.3);
 }
 
@@ -714,11 +714,11 @@ a:hover,
 
 .cs-post_pagination.cs-style2 .page-numbers a.next:hover {
   color: #fff;
-  background-color: #00bb85;
+  background-color: #13b5ea;
 }
 
 .cs-sidebar_widget_title::after {
-  background-color: #00bb85;
+  background-color: #13b5ea;
 }
 
 .searchform input#s,
@@ -749,7 +749,7 @@ a:hover,
 }
 
 .ui-slider .ui-state-active {
-  background: #00bb85;
+  background: #13b5ea;
 }
 
 .select2-container--default
@@ -779,12 +779,12 @@ b {
 
 .cs-checkbox input:checked + label:before,
 .cs-radio input:checked + label:before {
-  border-color: #00bb85;
+  border-color: #13b5ea;
 }
 
 .cs-checkbox label:after,
 .cs-radio label:after {
-  background-color: #00bb85;
+  background-color: #13b5ea;
 }
 
 .cs-hero.cs-style1 .cs-hero_counter_number {

@@ -21,7 +21,9 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="example" class="table-bordered table-responsive" style="width:100%">
+                
+                <div class="table-responsive">
+                <table id="example" class="table table-responsive" style="width:100%">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -86,6 +88,7 @@
 
                     </tbody>
                 </table>
+                </div>
             </div>
             <!-- end page title -->
         </div> <!-- container-fluid -->

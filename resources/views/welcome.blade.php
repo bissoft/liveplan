@@ -8,8 +8,8 @@ $data = content();
 <div class="cs-hero cs-style2 cs-center">
   <div class="container">
     <div class="cs-hero_text wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
-      <div class="cs-hero_subtitle"> secure funding, and get <br>insights to help you reach your goals.</div>
-      <h1 class="cs-hero_title cs-medium"> <b class="cs-bold cs-accent_color">Plan, fund,</b> and </ <b class="cs-bold cs-accent_color"> </b> <br><b class="cs-bold cs-accent_color">grow </b>your business. </h1>
+      <div class="cs-hero_subtitle">{!!$data['#top_banner']['heading']??''!!}</div>
+      <h1 class="cs-hero_title cs-medium"> <b class="cs-bold cs-accent_color">{!!$data['#top_banner']['description']??''!!}</h1>
       <div class="cs-hero_btn">
         <a href="contact.html" class="cs-btn cs-style2 cs-btn_lg cs-accent_bg cs-medium">Get Started</a>
       </div>
@@ -17,7 +17,7 @@ $data = content();
   </div>
   <div class="cs-hero_img cs-parallax wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s">
     <div class="cs-to_right">
-      <img src="assets/img/marketing/hero-img.png" alt="">
+      <img src="{{asset($data['#top_banner']['image']??'assets/img/marketing/hero-img.png')}}" alt="">
     </div>
   </div>
 </div>
@@ -29,8 +29,8 @@ $data = content();
   <div class="cs-height_135 cs-height_lg_75"></div>
   <div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
     <div class="cs-section_heading cs-style2 cs-size1">
-      <div class="cs-section_subtitle">Our capabilities</div>
-      <h2 class="cs-section_title cs-medium">Our best <b class="cs-bold cs-accent_color">services.</b></h2>
+      <div class="cs-section_subtitle">{!!$data['#home_service']['title']??''!!}</div>
+      <h2 class="cs-section_title cs-medium">{!!$data['#home_service']['heading']??''!!}</b></h2>
     </div>
     <div class="cs-height_65 cs-height_lg_35"></div>
   </div>
@@ -158,11 +158,11 @@ $data = content();
       <div class="col-lg-6 wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s">
         <div class="cs-left_full_width text-center">
           <div class="cs-image_box cs-style3 cs-parallax cs-align_right">
-            <div class="cs-image_box_img cs-bg" data-src="assets/img/marketing/image-box.jpg"></div>
+            <div class="cs-image_box_img cs-bg" data-src="{{asset($data['#home_make']['image']??'assets/img/marketing/image-box.jpg')}}"></div>
             <div class="cs-image_box_text cs-to_up">
               <div class="cs-image_box_text_in">
-                <div class="cs-image_box_title cs-accent_color cs-bold">10<span>+</span></div>
-                <h2 class="cs-image_box_subtitle cs-medium">Years <br>Experience</h2>
+                <div class="cs-image_box_title cs-accent_color cs-bold">{!!$data['#home_expirence']['title']??''!!}<span>+</span></div>
+                <h2 class="cs-image_box_subtitle cs-medium">{!!$data['#home_expirence']['heading']??''!!}</h2>
               </div>
             </div>
             <div class="cs-image_box_pattern cs-to_left"></div>
@@ -174,39 +174,39 @@ $data = content();
           <div class="cs-vertical_middle_in">
             <div class="cs-height_0 cs-height_lg_50"></div>
             <div class="cs-text_box cs-style1 cs-size1">
-              <div class="cs-text_box_subtitle">What we do</div>
-              <h2 class="cs-text_box_title cs-medium">We make your <b class="cs-bold cs-accent_color">business</b> easy.</h2>
+              <div class="cs-text_box_subtitle">{!!$data['#home_make']['title']??''!!}</div>
+              <h2 class="cs-text_box_title cs-medium">{!!$data['#home_make']['heading']??''!!}</h2>
               <div class="cs-height_20 cs-height_lg_15"></div>
-              <div class="cs-text_box_text">Lorem ipsum dolor Lorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolorLorem ipsum dolor </div>
+              <div class="cs-text_box_text">{!!$data['#home_make']['description']??''!!}</div>
               <div class="cs-height_35 cs-height_lg_35"></div>
               <div class="row cs-gap_20">
                 <div class="col-sm-4">
                   <div class="cs-counter cs-style1 text-center cs-gradient_bg_1">
                     <h3 class="cs-counter_number cs-bold">
-                      <span data-count-to="100" class="odometer"></span>
+                      <span data-count-to="{!!$data['#home_count1']['title']??''!!}" class="odometer"></span>
                       <span class="cs-counter_symble">+</span>
                     </h3>
-                    <h4 class="cs-counter_title cs-normal">Projets Done</h4>
+                    <h4 class="cs-counter_title cs-normal">{!!$data['#home_count1']['heading']??''!!}</h4>
                   </div>
                   <div class="cs-height_0 cs-height_lg_30"></div>
                 </div><!-- .col -->
                 <div class="col-sm-4">
                   <div class="cs-counter cs-style1 text-center cs-gradient_bg_1">
                     <h3 class="cs-counter_number cs-bold">
-                      <span data-count-to="990" class="odometer"></span>
+                      <span data-count-to="{!!$data['#home_count2']['title']??''!!}" class="odometer"></span>
                       <span class="cs-counter_symble">+</span>
                     </h3>
-                    <h4 class="cs-counter_title cs-normal">Happy Clients</h4>
+                    <h4 class="cs-counter_title cs-normal">{!!$data['#home_count2']['heading']??''!!}</h4>
                   </div>
                   <div class="cs-height_0 cs-height_lg_30"></div>
                 </div><!-- .col -->
                 <div class="col-sm-4">
                   <div class="cs-counter cs-style1 text-center cs-gradient_bg_1">
                     <h3 class="cs-counter_number cs-bold">
-                      <span data-count-to="50" class="odometer"></span>
+                      <span data-count-to="{!!$data['#home_count3']['title']??''!!}" class="odometer"></span>
                       <span class="cs-counter_symble">+</span>
                     </h3>
-                    <h4 class="cs-counter_title cs-normal">Team Experts</h4>
+                    <h4 class="cs-counter_title cs-normal">{!!$data['#home_count3']['heading']??''!!}</h4>
                   </div>
                   <div class="cs-height_0 cs-height_lg_30"></div>
                 </div><!-- .col -->
@@ -226,8 +226,8 @@ $data = content();
   <div class="cs-height_135 cs-height_lg_75"></div>
   <div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
     <div class="cs-section_heading cs-style2 text-center cs-size1">
-      <div class="cs-section_subtitle">Simple pricing</div>
-      <h2 class="cs-section_title cs-medium">Choose your <b class="cs-bold cs-accent_color">plan</b></h2>
+      <div class="cs-section_subtitle">{!!$data['#home_plan']['title']??''!!}</div>
+      <h2 class="cs-section_title cs-medium">{!!$data['#home_plan']['heading']??''!!}</h2>
     </div>
     <div class="cs-height_65 cs-height_lg_35"></div>
   </div>
@@ -419,12 +419,12 @@ $data = content();
 <div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
   <div class="cs-section_heading cs-style4 cs-size1">
     <div class="cs-section_heading_left">
-      <div class="cs-section_subtitle">Our awsome team</div>
-      <h2 class="cs-section_title cs-medium">Meet our <b class="cs-bold cs-accent_color">team</b>.</h2>
-      <div class="cs-section_text">We help you to create innovations and we transform ideas into reality. <br>The innovation is often identified with new technology.</div>
+      <div class="cs-section_subtitle">{!!$data['#home_team']['title']??''!!}</div>
+      <h2 class="cs-section_title cs-medium">{!!$data['#home_team']['heading']??''!!}</h2>
+      <div class="cs-section_text">{!!$data['#home_team']['description']??''!!}</div>
     </div>
     <div class="cs-section_heading_right">
-      <a href="team.html" class="cs-btn cs-style3 cs-btn_lg cs-primary_font cs-accent_color cs-medium">
+      <a href="#" class="cs-btn cs-style3 cs-btn_lg cs-primary_font cs-accent_color cs-medium">
         <span class="cs-btn_text">Meet the whole team</span>
         <span class="cs-btn_icon cs-center"><i class="fas fa-arrow-right"></i></span>
       </a>
@@ -523,8 +523,8 @@ $data = content();
   <div class="cs-height_135 cs-height_lg_75"></div>
   <div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
     <div class="cs-section_heading cs-style2 cs-size1">
-      <div class="cs-section_subtitle">Testimonials</div>
-      <h2 class="cs-section_title cs-medium">What our client <b class="cs-bold cs-accent_color">says</b></h2>
+      <div class="cs-section_subtitle">{!!$data['#home_review']['title']??''!!}Testimonials</div>
+      <h2 class="cs-section_title cs-medium">{!!$data['#home_review']['heading']??''!!}</h2>
     </div>
     <div class="cs-height_65 cs-height_lg_35"></div>
   </div>
@@ -635,8 +635,8 @@ $data = content();
 <div class="cs-height_135 cs-height_lg_75"></div>
 <div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
   <div class="cs-section_heading cs-style2 cs-size1 text-center">
-    <div class="cs-section_subtitle">Our latest stories</div>
-    <h2 class="cs-section_title">Our latest <b class="cs-bold cs-accent_color">articles</b></h2>
+    <div class="cs-section_subtitle">{!!$data['#home_article']['title']??''!!}</div>
+    <h2 class="cs-section_title">{!!$data['#home_article']['heading']??''!!}</h2>
   </div>
   <div class="cs-height_65 cs-height_lg_35"></div>
 </div>

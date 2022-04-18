@@ -21,6 +21,8 @@
                 </div>
             </div>
             <div class="card-body">
+                
+                <div class="table-responsive">
                 <table class="table table-resposive" style="width:100%">
                     <thead>
                         <tr>
@@ -62,6 +64,7 @@
 
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
         <!-- end page title -->

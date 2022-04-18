@@ -1,5 +1,6 @@
 @php
     $data = content();
+    $media = media();
 @endphp
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -122,14 +123,22 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="cs-footer_item">
-                        <h2 class="cs-widget_title cs-semi_bold">{{$data['#footer_detail']['heading']??''}}</h2>
+                        <h2 class="cs-widget_title cs-semi_bold">{{$data['#footer_newsletter']['heading']??''}}</h2>
                         <div class="cs-footer_newsletter cs-style1">
-                            <div class="cs-footer_newsletter_text">{!!$data['#footer_detail']['description']??''!!}</div>
+                            <div class="cs-footer_newsletter_text">{!!$data['#footer_newsletter']['description']??''!!}</div>
                             <div class="cs-height_30 cs-height_lg_30"></div>
-                            <form action="#" class="cs-footer_newsletter_form">
-                                <input type="email" class="cs-footer_newsletter_input" placeholder="Enter your email">
-                                <button class="cs-footer_newsletter_btn cs-accent_bg_2 cs-white cs-accent_bg_hover"><i
+                            @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                            <form action="{{route('newsletter.store')}}" method="POST" class="cs-footer_newsletter_form">
+                              @csrf
+                              {!! $errors->first('email', "<span class='text-danger'>:message</span>") !!}
+                                <input type="email" class="cs-footer_newsletter_input" name="email" placeholder="Enter your email">
+                                <button type="submit" class="cs-footer_newsletter_btn cs-accent_bg_2 cs-white cs-accent_bg_hover"><i
                                         class="fas fa-paper-plane"></i></button>
+                                        
                             </form>
                         </div>
                     </div>
@@ -138,39 +147,42 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="cs-footer_item widget_nav_menu">
-                                <h2 class="cs-widget_title cs-semi_bold">Services</h2>
+                                <h2 class="cs-widget_title cs-semi_bold">{{$data['#footer_service']['heading']??''}}</h2>
                                 <ul class="menu">
-                                    <li><a href="services-details.html">lorem plusam</a></li>
-                                    <li><a href="services-details.html">lorem plusam</a></li>
-                                    <li><a href="services-details.html">lorem plusam</a></li>
-                                    <li><a href="services-details.html">lorem plusam </a></li>
+                                    <li><a href="#">lorem plusam</a></li>
+                                    <li><a href="#">lorem plusam</a></li>
+                                    <li><a href="#">lorem plusam</a></li>
+                                    <li><a href="#">lorem plusam </a></li>
                                 </ul>
                             </div>
                         </div><!-- .col -->
                         <div class="col-md-4">
                             <div class="cs-footer_item widget_nav_menu">
-                                <h2 class="cs-widget_title cs-semi_bold">Company</h2>
+                                <h2 class="cs-widget_title cs-semi_bold">{{$data['#footer_company']['heading']??''}}</h2>
                                 <ul class="menu">
                                     <li><a href="#">Privacy policy</a></li>
                                     <li><a href="#">Sitemap</a></li>
-                                    <li><a href="service.html">Services</a></li>
+                                    <li><a href="#">Services</a></li>
                                     <li><a href="#">Terms & conditions</a></li>
                                 </ul>
                             </div>
                         </div><!-- .col -->
                         <div class="col-md-4">
                             <div class="cs-footer_item cs-address_widgert">
-                                <h2 class="cs-widget_title cs-semi_bold">Follow us</h2>
+                                <h2 class="cs-widget_title cs-semi_bold">{{$data['#footer_fallow']['heading']??''}}</h2>
                                 <ul>
-                                    <li>Dummy@gmail.com</li>
-                                    <li>+000 000 000</li>
+                                    <li>{{$data['#footer_email']['heading']??''}}</li>
+                                    <li>{{$data['#footer_phone']['heading']??''}}</li>
                                 </ul>
                                 <div class="cs-height_30 cs-height_lg_30"></div>
                                 <div class="cs-social_btns cs-style1">
-                                    <a href="#"
+                                  @foreach ($media as $item)
+                                      
+                                    <a href="{{$item->link??''}}" title="{{$item->name??''}}" target="_blank"
                                         class="cs-accent_bg_2_hover cs-white_hover cs-white_bg cs-ternary_color"><i
-                                            class="fab fa-facebook-f"></i></a>
-                                    <a href="#"
+                                            class="{{$item->icon??''}}"></i></a>
+                                            @endforeach
+                                    {{-- <a href="#"
                                         class="cs-accent_bg_2_hover cs-white_hover cs-white_bg cs-ternary_color"><i
                                             class="fab fa-twitter"></i></a>
                                     <a href="#"
@@ -178,7 +190,7 @@
                                             class="fab fa-instagram"></i></a>
                                     <a href="#"
                                         class="cs-accent_bg_2_hover cs-white_hover cs-white_bg cs-ternary_color"><i
-                                            class="fab fa-pinterest-p"></i></a>
+                                            class="fab fa-pinterest-p"></i></a> --}}
                                 </div>
                             </div>
                         </div><!-- .col -->

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/', 'HomeController@home')->name('home');
+Route::resource('newsletter', 'NewsletterController');
 
 // 2FA
 Route::group(['prefix' => '2fa', 'middleware' => ['auth', 'web']], function(){
@@ -210,9 +211,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Article
     Route::resource('article', 'ArticleController');
     Route::post('deleteArticle', 'ArticleController@destroy')->name('deleteArticle');
-    // Article
+    // Review
     Route::resource('review', 'ReviewController');
     Route::post('deleteReview', 'ReviewController@destroy')->name('deleteReview');
+    // Newsletter
+    Route::resource('newsletter', 'NewsletterController');
+    Route::post('deleteNewsletter', 'NewsletterController@destroy')->name('deleteNewsletter');
 });
 
 

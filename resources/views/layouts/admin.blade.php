@@ -1,47 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Dashboard </title>
-    <!-- Favicon icon -->
-    <!-- <link rel="icon" type="image/png" sizes="16x16" href="dash-assets/images/favicon.png"> -->
-	<link rel="stylesheet" href="{{asset('dash-assets/vendor/chartist/css/chartist.min.css')}}">
-    <link href="{{asset('dash-assets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}}" rel="stylesheet">
-    <link href="{{asset('dash-assets/css/style.css')}}" rel="stylesheet">
-    <link href="{{asset('dash-assets/css/style-2.css')}}" rel="stylesheet">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--favicon-->
+    <!-- <link rel="icon" href="{{asset('dash-assets/images/favicon-32x32.png')}}" type="image/png" /> -->
+    <!--plugins-->
+    <link href="{{asset('dash-assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('dash-assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
+    <link href="{{asset('dash-assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" />
+    <link href="{{asset('dash-assets/plugins/metismenu/css/metisMenu.min.css')}}" rel="stylesheet" />
+    <!-- loader-->
+    <link href="{{asset('dash-assets/css/pace.min.css')}}" rel="stylesheet" />
+    <script src="{{asset('dash-assets/js/pace.min.js')}}"></script>
+    <!-- Bootstrap CSS -->
+    <link href="{{asset('dash-assets/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('dash-assets/css/app.css')}}" rel="stylesheet">
+    <link href="{{asset('dash-assets/css/icons.css')}}" rel="stylesheet">
+
+    <!-- Theme Style CSS -->
+    <link rel="stylesheet" href="{{asset('dash-assets/css/dark-theme.css')}}" />
+    <link rel="stylesheet" href="{{asset('dash-assets/css/semi-dark.css')}}" />
+    <link rel="stylesheet" href="{{asset('dash-assets/css/header-colors.css')}}" />
     @yield('style')
 </head>
+
 <body>
 
 
-    <div id="main-wrapper">
+    <div class="wrapper">
+
 
         <!--**********************************
-            Nav header start
-        ***********************************-->
-        <div class="nav-header">
-            <a href="{{url('/')}}" class="brand-logo">
-                <h3>Live Plan</h3>
-                {{-- <img src="/dash-assets/images/logo.png" class="w-100"> --}}
-            </a>
-            <div class="nav-control">
-                <div class="hamburger">
-                    <span class="line"></span><span class="line"></span><span class="line"></span>
-                </div>
-            </div>
-        </div>
-        
-		
-		<!--**********************************
-            Chat box End
-        ***********************************-->
-		
-		<!--**********************************
             Header start
         ***********************************-->
-        <div class="header">
+        <header>
+            <div class="topbar d-flex align-items-center">
+                <nav class="navbar navbar-expand">
+                    <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
+                    </div>
+
+                    <div class="top-menu ms-auto">
+                        <ul class="navbar-nav align-items-center">
+
+                            <li class="nav-item dropdown dropdown-large">
+                                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span
+                                        class="alert-count">7</span>
+                                    <i class='bx bx-bell'></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a href="javascript:;">
+                                        <div class="msg-header">
+                                            <p class="msg-header-title">Notifications</p>
+                                            <p class="msg-header-clear ms-auto">Marks all as read</p>
+                                        </div>
+                                    </a>
+                                    <div class="header-notifications-list">
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-primary text-primary"><i
+                                                        class="bx bx-group"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Customers<span
+                                                            class="msg-time float-end">14 Sec
+                                                            ago</span></h6>
+                                                    <p class="msg-info">5 new user registered</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-danger text-danger"><i
+                                                        class="bx bx-cart-alt"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Orders <span
+                                                            class="msg-time float-end">2 min
+                                                            ago</span></h6>
+                                                    <p class="msg-info">You have recived new orders</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-success text-success"><i
+                                                        class="bx bx-file"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">24 PDF File<span
+                                                            class="msg-time float-end">19 min
+                                                            ago</span></h6>
+                                                    <p class="msg-info">The pdf files generated</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-warning text-warning"><i
+                                                        class="bx bx-send"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">Time Response <span
+                                                            class="msg-time float-end">28 min
+                                                            ago</span></h6>
+                                                    <p class="msg-info">5.1 min avarage time response</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-info text-info"><i
+                                                        class="bx bx-home-circle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Product Approved <span
+                                                            class="msg-time float-end">2 hrs ago</span></h6>
+                                                    <p class="msg-info">Your new product has approved</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-danger text-danger"><i
+                                                        class="bx bx-message-detail"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Comments <span
+                                                            class="msg-time float-end">4 hrs
+                                                            ago</span></h6>
+                                                    <p class="msg-info">New customer comments recived</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-success text-success"><i
+                                                        class='bx bx-check-square'></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">Your item is shipped <span
+                                                            class="msg-time float-end">5 hrs
+                                                            ago</span></h6>
+                                                    <p class="msg-info">Successfully shipped your item</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-primary text-primary"><i
+                                                        class='bx bx-user-pin'></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New 24 authors<span
+                                                            class="msg-time float-end">1 day
+                                                            ago</span></h6>
+                                                    <p class="msg-info">24 new authors joined last week</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-warning text-warning"><i
+                                                        class='bx bx-door-open'></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">Defense Alerts <span
+                                                            class="msg-time float-end">2 weeks
+                                                            ago</span></h6>
+                                                    <p class="msg-info">45% less alerts last 4 weeks</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <a href="javascript:;">
+                                        <div class="text-center msg-footer">View All Notifications</div>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown dropdown-large">
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <div class="header-message-list">
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="user-box dropdown">
+                        <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{{asset(auth()->user()->image??'dash-assets/images/avatars/avatar-2.png')}}" class="user-img" alt="user avatar">
+                            <div class="user-info ps-3">
+                                <p class="user-name mb-0">{{auth()->user()->name??''}}</p>
+
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="{{url('profile')}}"><i
+                                        class="bx bx-user"></i><span>Profile</span></a>
+                            </li>
+                            <li><a class="dropdown-item" href="{{url('/admin')}}"><i
+                                        class='bx bx-home-circle'></i><span>Dashboard</span></a>
+                            </li>
+                            <li>
+                                <div class="dropdown-divider mb-0"></div>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" class="dropdown-item" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        <i
+                                        class='bx bx-log-out-circle'></i>
+                                        <span>Logout</span>
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                    </form>
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+
+        {{-- <div class="header">
             <div class="header-content">
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
@@ -56,7 +246,7 @@
 
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
 									<div class="header-info">
-										@if($organization)
+										@if ($organization)
 											<span>{{ $organization->Name }}</span>
 											<small>selected organization</small>
 										@else
@@ -66,8 +256,8 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                 	<a href="javascript:void(0)" class="dropdown-item ai-icon change-organization" data-id="">None</a>
-                                	@if($organizations->count())
-	                                	@foreach($organizations as $organization)
+                                	@if ($organizations->count())
+	                                	@foreach ($organizations as $organization)
 	                                    	<a href="javascript:void(0)" class="dropdown-item ai-icon change-organization" data-id="{{ $organization->id }}">{{ $organization->Name }}</a>
 	                                    @endforeach
 	                                @endif
@@ -179,7 +369,7 @@
                             </li>
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                    <img src="{{ auth()->user()->image ?? asset('dash-assets/images/profile/5.jpg')}}" width="20" alt=""/>
+                                    <img src="{{ auth()->user()->image ?? asset('{{asset('dash-assets/images/profile/5.jpg')}}" width="20" alt=""/>
 									<div class="header-info">
 										<span>{{auth()->user()->name??''}}</span>
 										<small>Super Admin</small>
@@ -208,7 +398,7 @@
                     </div>
                 </nav>
             </div>
-        </div>
+        </div> --}}
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -216,151 +406,165 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="deznav">
-            <div class="deznav-scroll">
-				
-				<ul class="metismenu" id="menu">
-                    <li><a class=" ai-icon" href="{{ url('/admin') }}" aria-expanded="false">
-							<i class="flaticon-047-home"></i>
-							<span class="nav-text">Dashboard</span>
-						</a>
-                    </li>
-                    <li><a class=" ai-icon" href="javascript:void()" aria-expanded="false">
-							<i class="flaticon-041-graph"></i>
-							<span class="nav-text">Reconciliation</span>
-						</a>
-                    </li>
+        <div class="sidebar-wrapper" data-simplebar="true">
+            <div class="sidebar-header">
+                <div>
+                    <img src="{{asset('assets/img/logo.svg')}}" class="logo-icon" alt="logo icon">
+                </div>
+                <div>
 
-                    <li><a class=" ai-icon" href="javascript:void()" aria-expanded="false">
-							<i class="flaticon-013-checkmark"></i>
-							<span class="nav-text">Tax</span>
-						</a>
-                    </li>
+                </div>
+                <div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
+                </div>
+            </div>
+            <ul class="metismenu" id="menu">
+                <li><a class=" ai-icon" href="{{ url('/admin') }}" aria-expanded="false">
+                        <i class="flaticon-047-home"></i>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li><a class=" ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="flaticon-041-graph"></i>
+                        <span class="nav-text">Reconciliation</span>
+                    </a>
+                </li>
 
-                    <li><a class=" ai-icon" href="{{route('admin.messages')}}" aria-expanded="false">
-							<i class="fa fa-comment"></i>
-							<span class="nav-text">Messages</span>
-						</a>
-                    </li>
-                    
-                    <li><a class=" ai-icon" href="{{route('admin.support')}}" aria-expanded="false">
+                <li><a class=" ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="flaticon-013-checkmark"></i>
+                        <span class="nav-text">Tax</span>
+                    </a>
+                </li>
 
-						<i class="fa fa-question-circle"></i>
-							<span class="nav-text">Support</span>
-						</a>
-                    </li>
+                <li><a class=" ai-icon" href="{{ route('admin.messages') }}" aria-expanded="false">
+                        <i class="fa fa-comment"></i>
+                        <span class="nav-text">Messages</span>
+                    </a>
+                </li>
 
-                    <li><a class=" ai-icon" href="{{route('admin.contacts')}}" aria-expanded="false">
+                <li><a class=" ai-icon" href="{{ route('admin.support') }}" aria-expanded="false">
 
-						<i class="fa fa-user-circle"></i>
-							<span class="nav-text">Contacts</span>
-						</a>
-                    </li>
+                        <i class="fa fa-question-circle"></i>
+                        <span class="nav-text">Support</span>
+                    </a>
+                </li>
 
-                    {{-- <li><a class=" ai-icon" href="{{url('plans')}}" aria-expanded="false">
+                <li><a class=" ai-icon" href="{{ route('admin.contacts') }}" aria-expanded="false">
+
+                        <i class="fa fa-user-circle"></i>
+                        <span class="nav-text">Contacts</span>
+                    </a>
+                </li>
+
+                {{-- <li><a class=" ai-icon" href="{{url('plans')}}" aria-expanded="false">
 
 						<i class="fa fa-user-circle"></i>
 							<span class="nav-text">Subscription Plans</span>
 						</a>
                     </li> --}}
 
-                    <li>
-                        <a href="javascript: void(0);">
-                            <i class="fa fa-user-circle"></i>
-                            <span> Users Management </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <ul class="nav-second-level" aria-expanded="false">
-                            <li><a href="{{ route('admin.permissions.index') }}">Permissions </a></li>
-                            <li><a href="{{ route('admin.roles.index') }}">Roles</a></li>
-                              <li><a href="{{ route('admin.users.index') }}">Users</a></li>
-                        </ul>
-                    </li>
-                   
-                    <li>
-                            <a href="{{ url('admin/paid-users') }}"> <i class="fa fa-usd"></i> <span>Paid Users</span></a>
-                    </li>
-                    <li>
-                        <a href="javascript: void(0);">
-                            <i class="fa fa-user-circle "></i>
-                            <span> Xero </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <ul class="nav-second-level" aria-expanded="false">
-                            <li><a href="{{ route('admin.xero.accounts') }}">Accounts</a></li>
-                      
-                            <li><a href="{{ route('admin.xero.contacts') }}">Contacts</a></li>
-                       
-                            <li><a href="{{ route('admin.xero.invoices') }}">Invoices</a></li>
-                        
-                            <li><a href="{{ route('admin.xero.taxRates') }}">Tax Rates</a></li>
-                       
-                            <li><a href="{{ route('admin.xero.bankTransactions') }}">Bank Transactions</a></li>
-                        
-                            <li><a href="{{ route('admin.xero.bankTransfers') }}">Bank Transfers</a></li>
-                       
-                            <li><a href="{{ url('admin/xero/organisations') }}">Organizations</a></li>
-                        
-                            <li><a href="{{ url('admin/xero/balancesheet') }}">Balance Sheets</a></li>
-                        
-                            <li><a href="{{ url('admin/xero/trailbalance') }}">Trail Balances</a></li>
-                        
-                            <li><a href="{{ url('admin/xero/profitloss') }}">Profit And Loss</a></li>
-                            
-                            <li><a href="{{ url('admin/xero/maunaljournal') }}">Manual Journal</a></li>
-                            
-                            <li><a href="{{ url('admin/fetch/prepayments') }}">Pre Payments</a></li>
-                        </ul>
-                    </li>
-                     <li>
-                        <a href="javascript: void(0);">
-                            <i class="fa fa-cog"></i>
-                            <span>Settings </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <ul class="nav-second-level" aria-expanded="false">
-                            @can('content_access')
-                            <li>
-                                    <a href="{{ url('admin/content') }}">Website Content</a>
-                            </li>
-                            @endcan
-                            @can('service_access')
-                            <li>
-                                    <a href="{{ url('admin/service') }}">Services</a>
-                            </li>
-                            @endcan
-                            @can('packagePoint_access')
-                            <li>
-                                    <a href="{{ url('admin/packagePoint') }}">Package Point</a>
-                            </li>
-                            @endcan
-                            @can('package_access')
-                            <li>
-                                    <a href="{{ url('admin/package') }}">Packages</a>
-                            </li>
-                            @endcan
-                            @can('article_access')
-                            <li>
-                                    <a href="{{ url('admin/article') }}">Articles</a>
-                            </li>
-                            @endcan
-                            @can('review_access')
-                            <li>
-                                    <a href="{{ url('admin/review') }}">Review</a>
-                            </li>
-                            @endcan
-                            @can('media_access')
-                            <li>
-                                    <a href="{{ url('admin/media') }}">Social Media</a>
-                            </li>
-                            @endcan
-                            @can('team_access')
-                            <li>
-                                    <a href="{{ url('admin/team') }}">Team</a>
-                            </li>
-                            @endcan
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="fa fa-user-circle"></i>
+                        <span> Users Management </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{ route('admin.permissions.index') }}">Permissions </a></li>
+                        <li><a href="{{ route('admin.roles.index') }}">Roles</a></li>
+                        <li><a href="{{ route('admin.users.index') }}">Users</a></li>
+                    </ul>
+                </li>
 
-                            {{-- <li>
+                <li>
+                    <a href="{{ url('admin/paid-users') }}"> <i class="fa fa-usd"></i> <span>Paid
+                            Users</span></a>
+                </li>
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="fa fa-user-circle "></i>
+                        <span> Xero </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="{{ route('admin.xero.accounts') }}">Accounts</a></li>
+
+                        <li><a href="{{ route('admin.xero.contacts') }}">Contacts</a></li>
+
+                        <li><a href="{{ route('admin.xero.invoices') }}">Invoices</a></li>
+
+                        <li><a href="{{ route('admin.xero.taxRates') }}">Tax Rates</a></li>
+
+                        <li><a href="{{ route('admin.xero.bankTransactions') }}">Bank Transactions</a></li>
+
+                        <li><a href="{{ route('admin.xero.bankTransfers') }}">Bank Transfers</a></li>
+
+                        <li><a href="{{ url('admin/xero/organisations') }}">Organizations</a></li>
+
+                        <li><a href="{{ url('admin/xero/balancesheet') }}">Balance Sheets</a></li>
+
+                        <li><a href="{{ url('admin/xero/trailbalance') }}">Trail Balances</a></li>
+
+                        <li><a href="{{ url('admin/xero/profitloss') }}">Profit And Loss</a></li>
+
+                        <li><a href="{{ url('admin/xero/maunaljournal') }}">Manual Journal</a></li>
+
+                        <li><a href="{{ url('admin/fetch/prepayments') }}">Pre Payments</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="fa fa-cog"></i>
+                        <span>Settings </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        @can('content_access')
+                            <li>
+                                <a href="{{ url('admin/content') }}">Website Content</a>
+                            </li>
+                        @endcan
+                        @can('service_access')
+                            <li>
+                                <a href="{{ url('admin/service') }}">Services</a>
+                            </li>
+                        @endcan
+                        @can('packagePoint_access')
+                            <li>
+                                <a href="{{ url('admin/packagePoint') }}">Package Point</a>
+                            </li>
+                        @endcan
+                        @can('package_access')
+                            <li>
+                                <a href="{{ url('admin/package') }}">Packages</a>
+                            </li>
+                        @endcan
+                        @can('article_access')
+                            <li>
+                                <a href="{{ url('admin/article') }}">Articles</a>
+                            </li>
+                        @endcan
+                        @can('review_access')
+                            <li>
+                                <a href="{{ url('admin/review') }}">Review</a>
+                            </li>
+                        @endcan
+                        @can('media_access')
+                            <li>
+                                <a href="{{ url('admin/media') }}">Social Media</a>
+                            </li>
+                        @endcan
+                        @can('team_access')
+                            <li>
+                                <a href="{{ url('admin/team') }}">Team</a>
+                            </li>
+                        @endcan
+                        @can('newsletter_access')
+                            <li>
+                                <a href="{{ url('admin/newsletter') }}">Newsletters</a>
+                            </li>
+                        @endcan
+
+                        {{-- <li>
                                     <a href="{{ url('/feature/view') }}">Features</a>
                             </li>
                             <li>
@@ -393,21 +597,22 @@
                             <li>
                                     <a href="{{ url('/2fa') }}">2 Factor Auth</a>
                             </li> --}}
-                           
-                        </ul>
-                    </li>
-                </ul>
-			</div>
+
+                    </ul>
+                </li>
+            </ul>
         </div>
         <!--**********************************
             Sidebar end
         ***********************************-->
-		
-		<!--**********************************
+
+        <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
-        	@yield('content')
+        <div class="page-wrapper">
+            <div class="page-content">
+                @yield('content')
+            </div>
         </div>
         <!--**********************************
             Content body end
@@ -416,25 +621,26 @@
         <!--**********************************
             Footer start
         ***********************************-->
-        <div class="footer">
+        {{-- <div class="footer">
             <div class="copyright">
-                <p>Copyright © 2021</p>
+                <p>Copyright © 2022</p>
             </div>
-        </div>
+        </div> --}}
         <!--**********************************
             Footer end
         ***********************************-->
 
-		<!--**********************************
+        <!--**********************************
            Support ticket button start
         ***********************************-->
 
         <!--**********************************
            Support ticket button end
         ***********************************-->
+        <div class="overlay toggle-icon"></div>
+        <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
 
-
-	</div>
+    </div>
     <!--**********************************
         Main wrapper end
     ***********************************-->
@@ -442,31 +648,27 @@
     <!--**********************************
         Scripts
     ***********************************-->
-    <!-- Required vendors -->
-    <script src="{{asset('dash-assets/vendor/global/global.min.js')}}"></script>
-	<script src="{{asset('dash-assets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
-	<script src="{{asset('dash-assets/vendor/chart.js/Chart.bundle.min.js')}}"></script>
-	
-	<!-- Chart piety plugin files -->
-    <script src="{{asset('dash-assets/vendor/peity/jquery.peity.min.js')}}"></script>
-	
-	<!-- Apex Chart -->
-	<script src="{{asset('dash-assets/vendor/apexchart/apexchart.js')}}"></script>
-	
-	<!-- Dashboard 1 -->
-	<script src="{{asset('dash-assets/js/dashboard/dashboard-1.js')}}"></script>
-	
-    <script src="{{asset('dash-assets/js/custom.min.js')}}"></script>
-	<script src="{{asset('dash-assets/js/deznav-init.js')}}"></script>
-	<script src="{{asset('dash-assets/js/demo.js')}}"></script>
-    <script src="{{asset('dash-assets/js/styleSwitcher.js')}}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{{asset('dash-assets/js/bootstrap.bundle.min.js')}}"></script>
+    <!--plugins-->
+    <script src="{{asset('dash-assets/js/jquery.min.js')}}"></script>
+    <script src="{{asset('dash-assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
+    <script src="{{asset('dash-assets/plugins/metismenu/js/metisMenu.min.js')}}"></script>
+    <script src="{{asset('dash-assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
+    <!--app JS-->
+    <script src="{{asset('dash-assets/js/app.js')}}"></script>
+    <script src="{{asset('dash-assets/plugins/apexcharts-bundle/js/apexcharts.min.js')}}"></script>
+    <script src="{{asset('dash-assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('dash-assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+    <script src="{{asset('dash-assets/js/index.js')}}"></script>
     <script type="text/javascript">
-    	$(document).on('click', '.change-organization', function(){
-    		window.location.href = '/admin/change/organization/' + $(this).data('id');
-    	});
+        $(document).on('click', '.change-organization', function() {
+            window.location.href = '/admin/change/organization/' + $(this).data('id');
+        });
     </script>
 
-	@yield('scripts')
+    @yield('scripts')
 
 </body>
+
 </html>
