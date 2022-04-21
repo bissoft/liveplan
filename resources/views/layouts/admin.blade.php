@@ -513,6 +513,21 @@
                 </li>
                 <li>
                     <a href="javascript: void(0);">
+                        <i class="fa fa-user-circle"></i>
+                        <span> QuickBooks </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        @can('webbook_company_access')
+                            <li>
+                                <a href="{{ url('admin/companies') }}">Companies</a>
+                            </li>
+                        @endcan
+                        
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);">
                         <i class="fa fa-cog"></i>
                         <span>Settings </span>
                         <span class="menu-arrow"></span>

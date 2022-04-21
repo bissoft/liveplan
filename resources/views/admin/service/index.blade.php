@@ -35,6 +35,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                         @foreach ($service as $index => $item)
                             <tr>
                                 <td>

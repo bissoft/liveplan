@@ -217,6 +217,26 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Newsletter
     Route::resource('newsletter', 'NewsletterController');
     Route::post('deleteNewsletter', 'NewsletterController@destroy')->name('deleteNewsletter');
+
+    //Webbooks
+    //companies
+    Route::resource('companies', 'Webbook\CompanyController');
+    Route::post('deleteCompanies', 'Webbook\CompanyController@destroy')->name('deleteCompanies');
+    Route::get('setting/{id}', 'Webbook\CompanyController@setting')->name('companies.setting');
+    Route::post('setting/{id}', 'Webbook\CompanyController@update_setting')->name('companies.update_setting');
+    // sync setting 
+    Route::get('syncsetting/{id}', 'Webbook\CompanyController@syncsetting')->name('companies.syncsetting');
+    Route::post('syncsetting/{id}', 'Webbook\CompanyController@update_syncsetting')->name('companies.update_syncsetting');
+
+    //connection
+    Route::get('connection/{id}', 'Webbook\ConnectionController@connection');
+    Route::get('view-connection/{company}/{id}', 'Webbook\ConnectionController@view');
+    Route::post('delete-connection/{company}/{id}', 'Webbook\ConnectionController@delete');
+    
+
+    //customer
+    Route::get('customer/{id}', 'Webbook\CustomerController@customer');
+    Route::get('view-customer/{company}/{id}', 'Webbook\CustomerController@view');
 });
 
 
