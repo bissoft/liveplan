@@ -460,9 +460,9 @@
 						<i class="fa fa-user-circle"></i>
 							<span class="nav-text">Subscription Plans</span>
 						</a>
-                    </li> --}}
+                    </li>
 
-                <li>
+                <li> --}}
                     <a href="javascript: void(0);">
                         <i class="fa fa-user-circle"></i>
                         <span> Users Management </span>
@@ -551,6 +551,11 @@
                         @can('package_access')
                             <li>
                                 <a href="{{ url('admin/package') }}">Packages</a>
+                            </li>
+                        @endcan
+                        @can('package_sale_access')
+                            <li>
+                                <a href="{{ url('admin/packageSale') }}">Package Sale</a>
                             </li>
                         @endcan
                         @can('article_access')

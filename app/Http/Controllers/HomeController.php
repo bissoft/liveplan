@@ -17,7 +17,7 @@ use App\Price;
 use App\Review;
 use App\Team;
 use App\Testimonial;
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -46,8 +46,18 @@ class HomeController extends Controller
     {
         if (auth()->user()->is_admin) {
             return redirect()->route('admin.home')->with('status', session('status'));
+        }else{
+            if(Auth()->user()->paid == 0){
+                return redirect('/#package')->with('error','Please subscribe package and then continue!');
+            }else{
+                if(Auth()->user()->expiry_date>=Carbon::now()->format('Y-m-d')){
+                    return  view('client.home');
+                }else{
+                    return redirect('/#package')->with('error1','Your Package expired please subcribe and continue!');
+                }
+                
+            }
         }
 
-        return redirect()->route('client.home')->with('status', session('status'));
     }
 }

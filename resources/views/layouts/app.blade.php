@@ -14,14 +14,14 @@
     <meta name="author" content="Laralink">
     <!-- Site Title -->
     <title>Live Plan</title>
-    <link rel="stylesheet" href="assets/css/plugins/fontawesome.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/lightgallery.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/slick.css">
-    <link rel="stylesheet" href="assets/css/plugins/animate.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/fontawesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/lightgallery.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/plugins/animate.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <!-- Theme Style -->
-    <link rel="stylesheet" href="assets/css/theme_2.css">
+    <link rel="stylesheet" href="{{asset('assets/css/theme_2.css')}}">
     @yield('style')
 </head>
 
@@ -57,7 +57,7 @@
                                 <li class="#"><a href="#">Soluction</a></li>
                                 <div class=" d-block d-sm-none">
                                     @auth()
-                                    <a href="@if(auth()->user()->is_admin) {{url('/admin')}} @else # @endif"
+                                    <a href="@if(auth()->user()->is_admin) {{url('/admin')}} @else {{url('/dashboard')}} @endif"
                                             class="cs-toolbox_btn cs-accent_bg_2 mb-2 mx-3 cs-white_hover cs-accent_bg_hover cs-rounded"><span>Dashbaord
                                             </span></a>
                                         <a href="javascript:void(0);"
@@ -85,7 +85,7 @@
                         </div>
                         <div class="cs-toolbox">
                           @auth()
-                          <a href="@if(auth()->user()->is_admin) {{url('/admin')}} @else # @endif"
+                          <a href="@if(auth()->user()->is_admin) {{url('/admin')}} @else {{url('/dashboard')}} @endif"
                                 class="cs-toolbox_btn cs-accent_bg_2 cs-white_hover cs-accent_bg_hover cs-rounded"><span>Dashbaord
                                 </span></a>
                                 <a href="javascript:void(0);"
@@ -223,13 +223,13 @@
     <!-- End Video Popup -->
     @yield('script')
     <!-- Script -->
-    <script src="assets/js/plugins/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/plugins/isotope.pkg.min.js"></script>
-    <script src="assets/js/plugins/jquery.slick.min.js"></script>
-    <script src="assets/js/plugins/lightgallery.min.js"></script>
-    <script src="assets/js/plugins/jquery.counter.min.js"></script>
-    <script src="assets/js/plugins/wow.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="{{asset('assets/js/plugins/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/isotope.pkg.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/jquery.slick.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/lightgallery.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/jquery.counter.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/wow.min.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
 </body>
 
 </html>

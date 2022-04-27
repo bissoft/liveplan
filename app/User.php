@@ -53,7 +53,9 @@ class User extends Authenticatable
         'subscription',
         'paid_amount', 
         'xero_organization_id',
-        'type'
+        'type',
+        'expiry_date',
+        'paid'
     ];
 
     public function getIsAdminAttribute()
@@ -76,6 +78,10 @@ class User extends Authenticatable
     public function userResults()
     {
         return $this->hasMany(Result::class, 'user_id', 'id');
+    }
+    public function userPackageSale()
+    {
+        return $this->hasMany(PackageSale::class, 'user_id', 'id');
     }
 
     public function getEmailVerifiedAtAttribute($value)

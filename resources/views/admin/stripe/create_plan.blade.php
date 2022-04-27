@@ -17,7 +17,6 @@
                         {{ $errors->first('name') }}
                     </div>
                 @endif
-                <span class="help-block">Enter amount to charge per month</span>
             </div>
             <div class="form-group">
                 <label class="required" for="amount">Amount</label>
@@ -28,6 +27,20 @@
                     </div>
                 @endif
                 <span class="help-block">Enter amount to charge per month</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="type">Plan Type</label>
+                <select name="type" class="form-control {{ $errors->has('type') ? 'is-invalid' : '' }}" id="">
+                    <option value="0">Monthly</option>
+                    <option value="1">Yearly</option>
+                
+                </select>
+                @if($errors->has('type'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('type') }}
+                    </div>
+                @endif
+                <span class="help-block">Chose Monthly or Yearly</span>
             </div>
             <input type="submit" class="btn btn-primary" value="Save">
         </form>

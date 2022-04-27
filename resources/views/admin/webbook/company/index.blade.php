@@ -36,12 +36,12 @@
                     <table id="example" class="table table-responsive" style="width:100%">
                         <thead>
                             <tr>
+                                <th scope="col">More</th>
                                 <th scope="col">#</th>
                                 <th scope="col">ID</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Actions</th>
-                                <th scope="col">More</th>
 
                             </tr>
                         </thead>
@@ -51,7 +51,25 @@
                             @endphp
                             @foreach ($arr as $index => $item)
                                 <tr>
-
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-dark btn-sm dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Action
+                                            </button>
+                                            <div class="dropdown-menu" style="position: absolute;">
+                                                <a class="dropdown-item" href="{{url('admin/connection/'.$item['id'])}}">Connection</a>
+                                                <a class="dropdown-item" href="{{url('admin/customer/'.$item['id'])}}">Customer</a>
+                                                <a class="dropdown-item" href="{{url('admin/profit_lost/'.$item['id'])}}">Profit & Lost</a>
+                                                <a class="dropdown-item" href="{{url('admin/balancesheet/'.$item['id'])}}">Balancesheet</a>
+                                                <a class="dropdown-item" href="{{url('admin/cashflow/'.$item['id'])}}">Operating Cash Flow</a>
+                                                <a class="dropdown-item" href="{{url('admin/taxrate/'.$item['id'])}}">TaxRates</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="{{ route('admin.companies.syncsetting', $item['id']) }}">Sync Setting</a>
+                                                <a class="dropdown-item" href="{{ route('admin.companies.setting', $item['id']) }}">Setting</a>
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td>
                                         {{ $index + 1 }}
                                     </td>
@@ -92,21 +110,7 @@
 
 
                                     </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-dark btn-sm dropdown-toggle"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Action
-                                            </button>
-                                            <div class="dropdown-menu" style="position: initial;">
-                                                <a class="dropdown-item" href="{{url('admin/connection/'.$item['id'])}}">Connection</a>
-                                                <a class="dropdown-item" href="{{url('admin/customer/'.$item['id'])}}">Customer</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="{{ route('admin.companies.syncsetting', $item['id']) }}">Sync Setting</a>
-                                                <a class="dropdown-item" href="{{ route('admin.companies.setting', $item['id']) }}">Setting</a>
-                                            </div>
-                                        </div>
-                                    </td>
+                                    
                                 </tr>
                             @endforeach
 

@@ -49,12 +49,12 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            if (!Auth::user()->is_admin && !Auth::user()->subscribed('default')) {
-                Auth::logout();
-                $request->session()->invalidate();
-                $request->session()->regenerateToken();
-                return redirect(route('login'))->withErrors('Your Subscription on that account have been expired');
-            }
+            // if (!Auth::user()->is_admin && !Auth::user()->subscribed('default')) {
+            //     Auth::logout();
+            //     $request->session()->invalidate();
+            //     $request->session()->regenerateToken();
+            //     return redirect(route('login'))->withErrors('Your Subscription on that account have been expired');
+            // }
             return redirect('/home');
         }
         return Redirect::back()->withErrors(['wc' => 'wrong credentials were enterd']);

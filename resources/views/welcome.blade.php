@@ -1,47 +1,58 @@
 <?php
 $data = content();
-?>@extends('layouts.app')
+?>
+@extends('layouts.app')
+@if (session('error'))
+    <script>
+        alert('Please subscribe package and then continue!');
+    </script>
+@endif
+@if (session('error1'))
+    <script>
+        alert('Your Package expired please subcribe and continue!');
+    </script>
+@endif
 @section('content')
-<div class="cs-height_90 cs-height_lg_90"></div>
+    <div class="cs-height_90 cs-height_lg_90"></div>
 
-<!-- Start Hero -->
-<div class="cs-hero cs-style2 cs-center">
-  <div class="container">
-    <div class="cs-hero_text wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
-      <div class="cs-hero_subtitle">{!!$data['#top_banner']['heading']??''!!}</div>
-      <h1 class="cs-hero_title cs-medium"> <b class="cs-bold cs-accent_color">{!!$data['#top_banner']['description']??''!!}</h1>
-      <div class="cs-hero_btn">
-        <a href="contact.html" class="cs-btn cs-style2 cs-btn_lg cs-accent_bg cs-medium">Get Started</a>
-      </div>
+    <!-- Start Hero -->
+    <div class="cs-hero cs-style2 cs-center">
+        <div class="container">
+            <div class="cs-hero_text wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                <div class="cs-hero_subtitle">{!! $data['#top_banner']['heading'] ?? '' !!}</div>
+                <h1 class="cs-hero_title cs-medium"> <b class="cs-bold cs-accent_color">{!! $data['#top_banner']['description'] ?? '' !!}</h1>
+                <div class="cs-hero_btn">
+                    <a href="contact.html" class="cs-btn cs-style2 cs-btn_lg cs-accent_bg cs-medium">Get Started</a>
+                </div>
+            </div>
+        </div>
+        <div class="cs-hero_img cs-parallax wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s">
+            <div class="cs-to_right">
+                <img src="{{ asset($data['#top_banner']['image'] ?? 'assets/img/marketing/hero-img.png') }}" alt="">
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="cs-hero_img cs-parallax wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s">
-    <div class="cs-to_right">
-      <img src="{{asset($data['#top_banner']['image']??'assets/img/marketing/hero-img.png')}}" alt="">
-    </div>
-  </div>
-</div>
-<!-- End Hero -->
+    <!-- End Hero -->
 
-<div class="cs-height_80 cs-height_lg_0"></div>
-<!-- Start Service -->
-<div class="cs-bg1" data-src="https://multim-html.vercel.aassets/img/marketing/icon-box.svg">
-  <div class="cs-height_135 cs-height_lg_75"></div>
-  <div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-    <div class="cs-section_heading cs-style2 cs-size1">
-      <div class="cs-section_subtitle">{!!$data['#home_service']['title']??''!!}</div>
-      <h2 class="cs-section_title cs-medium">{!!$data['#home_service']['heading']??''!!}</b></h2>
-    </div>
-    <div class="cs-height_65 cs-height_lg_35"></div>
-  </div>
-  <div class="container wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
-    <div class="row">
-      @foreach ($service as $item)
-      <div class="col-lg-4">
-        <a href="#" class="cs-icon_box cs-style2 cs-accent_bg_hover">
-          <div class="cs-icon_box_icon cs-center cs-accent_15_bg">
-            <span class="{{$item->icon??''}}"></span>
-            {{-- <svg width="78" height="73" viewBox="0 0 78 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="cs-height_80 cs-height_lg_0"></div>
+    <!-- Start Service -->
+    <div class="cs-bg1" data-src="https://multim-html.vercel.aassets/img/marketing/icon-box.svg">
+        <div class="cs-height_135 cs-height_lg_75"></div>
+        <div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+            <div class="cs-section_heading cs-style2 cs-size1">
+                <div class="cs-section_subtitle">{!! $data['#home_service']['title'] ?? '' !!}</div>
+                <h2 class="cs-section_title cs-medium">{!! $data['#home_service']['heading'] ?? '' !!}</b></h2>
+            </div>
+            <div class="cs-height_65 cs-height_lg_35"></div>
+        </div>
+        <div class="container wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
+            <div class="row">
+                @foreach ($service as $item)
+                    <div class="col-lg-4">
+                        <a href="#" class="cs-icon_box cs-style2 cs-accent_bg_hover">
+                            <div class="cs-icon_box_icon cs-center cs-accent_15_bg">
+                                <span class="{{ $item->icon ?? '' }}"></span>
+                                {{-- <svg width="78" height="73" viewBox="0 0 78 73" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M67.2 58.3C66.9 58.6 66.5 58.9 66.1 59.2L68.7 61.8L70.7 59.8L68.1 57.2C67.8 57.6 67.5 57.9 67.2 58.3Z" fill="#00BB85" stroke="#350C0C" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M67.2 46.1C63.8 42.7 58.4 42.7 55.1 46.1C51.8 49.5 51.7 54.9 55.1 58.2C58.5 61.6 63.9 61.6 67.2 58.2C70.5 54.9 70.5 49.5 67.2 46.1Z" stroke="#472313" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M70.3 60.3L69.2 61.4C68.8 61.8 68.8 62.4 69.2 62.8L73.9 67.5C74.3 67.9 74.9 67.9 75.3 67.5L76.4 66.4C76.8 66 76.8 65.4 76.4 65L71.7 60.3C71.3 59.9 70.7 59.9 70.3 60.3Z" fill="#00BB85" stroke="#350C0C" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -70,16 +81,16 @@ $data = content();
               </g>
               <path d="M45.7 52.9H36.1C35.7 52.9 35.5 52.6 35.5 52.3C35.5 52 35.8 51.7 36.1 51.7H45.7C46.1 51.7 46.3 52 46.3 52.3C46.3 52.6 46.1 52.9 45.7 52.9Z" fill="#FF8345"/>
               <path d="M45.6 64.5C45.2 64.5 45 64.2 45 63.9V58H23.1V63.8C23.1 64.2 22.8 64.4 22.5 64.4C22.1 64.4 21.9 64.1 21.9 63.8V57.4C21.9 57 22.2 56.8 22.5 56.8H45.6C46 56.8 46.2 57.1 46.2 57.4V63.8C46.2 64.2 46 64.5 45.6 64.5Z" fill="#350C0C"/>
-            </svg>                 --}}
-          </div>
-          <h2 class="cs-icon_box_title cs-semi_bold">{{$item->name??''}}</h2>
-          <div class="cs-icon_box_subtitle" >{!!$item->description??''!!}</div>
-          <span class="cs-add_btn cs-center cs-accent_color"><i class="fas fa-plus"></i></span>
-        </a>
-        <div class="cs-height_30 cs-height_lg_30"></div>
-      </div>
-      @endforeach
-      {{-- <div class="col-lg-4">
+            </svg> --}}
+                            </div>
+                            <h2 class="cs-icon_box_title cs-semi_bold">{{ $item->name ?? '' }}</h2>
+                            <div class="cs-icon_box_subtitle">{!! $item->description ?? '' !!}</div>
+                            <span class="cs-add_btn cs-center cs-accent_color"><i class="fas fa-plus"></i></span>
+                        </a>
+                        <div class="cs-height_30 cs-height_lg_30"></div>
+                    </div>
+                @endforeach
+                {{-- <div class="col-lg-4">
         <a href="services-details.html" class="cs-icon_box cs-style2 cs-accent_bg_hover">
           <div class="cs-icon_box_icon cs-center cs-accent_15_bg">
               <span class="fa fa-user"></span>
@@ -144,110 +155,116 @@ $data = content();
         </a>
         <div class="cs-height_30 cs-height_lg_30"></div>
       </div> --}}
-    </div>
-  </div>
-  <div class="cs-height_110 cs-height_lg_50"></div>
-</div>
-<!-- End Service -->
-
-<!-- Start About -->
-<div>
-  <div class="cs-height_140 cs-height_lg_80"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s">
-        <div class="cs-left_full_width text-center">
-          <div class="cs-image_box cs-style3 cs-parallax cs-align_right">
-            <div class="cs-image_box_img cs-bg" data-src="{{asset($data['#home_make']['image']??'assets/img/marketing/image-box.jpg')}}"></div>
-            <div class="cs-image_box_text cs-to_up">
-              <div class="cs-image_box_text_in">
-                <div class="cs-image_box_title cs-accent_color cs-bold">{!!$data['#home_expirence']['title']??''!!}<span>+</span></div>
-                <h2 class="cs-image_box_subtitle cs-medium">{!!$data['#home_expirence']['heading']??''!!}</h2>
-              </div>
             </div>
-            <div class="cs-image_box_pattern cs-to_left"></div>
-          </div>
         </div>
-      </div><!-- .col -->
-      <div class="col-lg-6 col-xl-5 offset-xl-1 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
-        <div class="cs-vertical_middle">
-          <div class="cs-vertical_middle_in">
-            <div class="cs-height_0 cs-height_lg_50"></div>
-            <div class="cs-text_box cs-style1 cs-size1">
-              <div class="cs-text_box_subtitle">{!!$data['#home_make']['title']??''!!}</div>
-              <h2 class="cs-text_box_title cs-medium">{!!$data['#home_make']['heading']??''!!}</h2>
-              <div class="cs-height_20 cs-height_lg_15"></div>
-              <div class="cs-text_box_text">{!!$data['#home_make']['description']??''!!}</div>
-              <div class="cs-height_35 cs-height_lg_35"></div>
-              <div class="row cs-gap_20">
-                <div class="col-sm-4">
-                  <div class="cs-counter cs-style1 text-center cs-gradient_bg_1">
-                    <h3 class="cs-counter_number cs-bold">
-                      <span data-count-to="{!!$data['#home_count1']['title']??''!!}" class="odometer"></span>
-                      <span class="cs-counter_symble">+</span>
-                    </h3>
-                    <h4 class="cs-counter_title cs-normal">{!!$data['#home_count1']['heading']??''!!}</h4>
-                  </div>
-                  <div class="cs-height_0 cs-height_lg_30"></div>
-                </div><!-- .col -->
-                <div class="col-sm-4">
-                  <div class="cs-counter cs-style1 text-center cs-gradient_bg_1">
-                    <h3 class="cs-counter_number cs-bold">
-                      <span data-count-to="{!!$data['#home_count2']['title']??''!!}" class="odometer"></span>
-                      <span class="cs-counter_symble">+</span>
-                    </h3>
-                    <h4 class="cs-counter_title cs-normal">{!!$data['#home_count2']['heading']??''!!}</h4>
-                  </div>
-                  <div class="cs-height_0 cs-height_lg_30"></div>
-                </div><!-- .col -->
-                <div class="col-sm-4">
-                  <div class="cs-counter cs-style1 text-center cs-gradient_bg_1">
-                    <h3 class="cs-counter_number cs-bold">
-                      <span data-count-to="{!!$data['#home_count3']['title']??''!!}" class="odometer"></span>
-                      <span class="cs-counter_symble">+</span>
-                    </h3>
-                    <h4 class="cs-counter_title cs-normal">{!!$data['#home_count3']['heading']??''!!}</h4>
-                  </div>
-                  <div class="cs-height_0 cs-height_lg_30"></div>
-                </div><!-- .col -->
-              </div><!-- .row -->
-            </div><!-- .cs-text_box -->
-          </div>
-        </div>
-      </div><!-- .col -->
+        <div class="cs-height_110 cs-height_lg_50"></div>
     </div>
-  </div>
-  <div class="cs-height_140 cs-height_lg_50"></div>
-</div>
-<!-- End About -->
+    <!-- End Service -->
 
-<!-- Start Pricing Table -->
-<div class="cs-gradient_bg_1">
-  <div class="cs-height_135 cs-height_lg_75"></div>
-  <div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-    <div class="cs-section_heading cs-style2 text-center cs-size1">
-      <div class="cs-section_subtitle">{!!$data['#home_plan']['title']??''!!}</div>
-      <h2 class="cs-section_title cs-medium">{!!$data['#home_plan']['heading']??''!!}</h2>
+    <!-- Start About -->
+    <div>
+        <div class="cs-height_140 cs-height_lg_80"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s">
+                    <div class="cs-left_full_width text-center">
+                        <div class="cs-image_box cs-style3 cs-parallax cs-align_right">
+                            <div class="cs-image_box_img cs-bg"
+                                data-src="{{ asset($data['#home_make']['image'] ?? 'assets/img/marketing/image-box.jpg') }}">
+                            </div>
+                            <div class="cs-image_box_text cs-to_up">
+                                <div class="cs-image_box_text_in">
+                                    <div class="cs-image_box_title cs-accent_color cs-bold">
+                                        {!! $data['#home_expirence']['title'] ?? '' !!}<span>+</span></div>
+                                    <h2 class="cs-image_box_subtitle cs-medium">{!! $data['#home_expirence']['heading'] ?? '' !!}</h2>
+                                </div>
+                            </div>
+                            <div class="cs-image_box_pattern cs-to_left"></div>
+                        </div>
+                    </div>
+                </div><!-- .col -->
+                <div class="col-lg-6 col-xl-5 offset-xl-1 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
+                    <div class="cs-vertical_middle">
+                        <div class="cs-vertical_middle_in">
+                            <div class="cs-height_0 cs-height_lg_50"></div>
+                            <div class="cs-text_box cs-style1 cs-size1">
+                                <div class="cs-text_box_subtitle">{!! $data['#home_make']['title'] ?? '' !!}</div>
+                                <h2 class="cs-text_box_title cs-medium">{!! $data['#home_make']['heading'] ?? '' !!}</h2>
+                                <div class="cs-height_20 cs-height_lg_15"></div>
+                                <div class="cs-text_box_text">{!! $data['#home_make']['description'] ?? '' !!}</div>
+                                <div class="cs-height_35 cs-height_lg_35"></div>
+                                <div class="row cs-gap_20">
+                                    <div class="col-sm-4">
+                                        <div class="cs-counter cs-style1 text-center cs-gradient_bg_1">
+                                            <h3 class="cs-counter_number cs-bold">
+                                                <span data-count-to="{!! $data['#home_count1']['title'] ?? '' !!}"
+                                                    class="odometer"></span>
+                                                <span class="cs-counter_symble">+</span>
+                                            </h3>
+                                            <h4 class="cs-counter_title cs-normal">{!! $data['#home_count1']['heading'] ?? '' !!}</h4>
+                                        </div>
+                                        <div class="cs-height_0 cs-height_lg_30"></div>
+                                    </div><!-- .col -->
+                                    <div class="col-sm-4">
+                                        <div class="cs-counter cs-style1 text-center cs-gradient_bg_1">
+                                            <h3 class="cs-counter_number cs-bold">
+                                                <span data-count-to="{!! $data['#home_count2']['title'] ?? '' !!}"
+                                                    class="odometer"></span>
+                                                <span class="cs-counter_symble">+</span>
+                                            </h3>
+                                            <h4 class="cs-counter_title cs-normal">{!! $data['#home_count2']['heading'] ?? '' !!}</h4>
+                                        </div>
+                                        <div class="cs-height_0 cs-height_lg_30"></div>
+                                    </div><!-- .col -->
+                                    <div class="col-sm-4">
+                                        <div class="cs-counter cs-style1 text-center cs-gradient_bg_1">
+                                            <h3 class="cs-counter_number cs-bold">
+                                                <span data-count-to="{!! $data['#home_count3']['title'] ?? '' !!}"
+                                                    class="odometer"></span>
+                                                <span class="cs-counter_symble">+</span>
+                                            </h3>
+                                            <h4 class="cs-counter_title cs-normal">{!! $data['#home_count3']['heading'] ?? '' !!}</h4>
+                                        </div>
+                                        <div class="cs-height_0 cs-height_lg_30"></div>
+                                    </div><!-- .col -->
+                                </div><!-- .row -->
+                            </div><!-- .cs-text_box -->
+                        </div>
+                    </div>
+                </div><!-- .col -->
+            </div>
+        </div>
+        <div class="cs-height_140 cs-height_lg_50"></div>
     </div>
-    <div class="cs-height_65 cs-height_lg_35"></div>
-  </div>
-  <div class="container wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
-    <div class="cs-tabs cs-fade_tabs cs-style1">
-      <div class="cs-center cs-medium">
-        <ul class="cs-tab_links cs-style1 cs-rounded text-uppercase cs-mp0 cs-center cs-primary_font">
-          <li class="active">
-            <a href="#tab_one" class="cs-rounded">Monthly</a>
-          </li>
-          <li>
-            <a href="#tab_two" class="cs-rounded">Annualy</a>
-          </li>
-        </ul>
-      </div>
-      <div class="cs-height_50 cs-height_lg_40"></div>
-      <div class="cs-tab_content">
-        <div id="tab_one" class="cs-tab active">
-          <div class="row">
-            {{-- <div class="col-lg-4">
+    <!-- End About -->
+
+    <!-- Start Pricing Table -->
+    <div class="cs-gradient_bg_1" id="package">
+        <div class="cs-height_135 cs-height_lg_75"></div>
+        <div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+            <div class="cs-section_heading cs-style2 text-center cs-size1">
+                <div class="cs-section_subtitle">{!! $data['#home_plan']['title'] ?? '' !!}</div>
+                <h2 class="cs-section_title cs-medium">{!! $data['#home_plan']['heading'] ?? '' !!}</h2>
+            </div>
+            <div class="cs-height_65 cs-height_lg_35"></div>
+        </div>
+        <div class="container wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
+            <div class="cs-tabs cs-fade_tabs cs-style1">
+                <div class="cs-center cs-medium">
+                    <ul class="cs-tab_links cs-style1 cs-rounded text-uppercase cs-mp0 cs-center cs-primary_font">
+                        <li class="active">
+                            <a href="#tab_one" class="cs-rounded">Monthly</a>
+                        </li>
+                        <li>
+                            <a href="#tab_two" class="cs-rounded">Annualy</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="cs-height_50 cs-height_lg_40"></div>
+                <div class="cs-tab_content">
+                    <div id="tab_one" class="cs-tab active">
+                        <div class="row">
+                            {{-- <div class="col-lg-4">
               <div class="cs-pricing_table cs-style1">
                 <div class="cs-pricing_image cs-accent_15_bg"><img src="assets/img/premium-icon.svg" alt=""></div>
                 <div class="cs-pricing_table_in">
@@ -269,40 +286,43 @@ $data = content();
               </div>
               <div class="cs-height_40 cs-height_lg_40"></div>
             </div><!-- .col --> --}}
-            @foreach ($monthly as $item)
-                
-            <div class="col-lg-4">
-              <div class="cs-pricing_table cs-style1">
-                <div class="cs-pricing_image cs-accent_15_bg"><img src="{{asset('assets/img/premium-icon.svg')}}" alt=""></div>
-                <div class="cs-pricing_table_in">
-                  @if ($item->title!=null)
-                  <div class="cs-pricing_label cs-accent_bg">{{$item->title??''}}</div>
-                  @endif
-                  <h2 class="cs-pricing_name cs-semi_bold">{{$item->heading??''}}</h2>
-                  <ul class="cs-pricing_feature cs-mp0">
-                    @php
-                                        $arr = json_decode($item->point,true);
-                                    @endphp
-                                    @foreach ($arr as $item1)
-                    <li><i class="fas fa-check-circle cs-accent_color"></i>{{$item1??''}}</li>
-                    @endforeach
-                  </ul>
-                  <div class="cs-price_wrap cs-bold cs-primary_font cs-accent_color_2">
-                    <span class="cs-symble">$</span>
-                    <span class="cs-price">{{$item->price??''}}</span>
-                    <span class="cs-pricing_duration cs-medium">/month</span>
-                  </div>
-                  <div class="text-center">
-                    <a href="#" class="cs-pricing_btn cs-primary_color cs-medium cs-accent_border cs-accent_bg_hover cs-rounded">Purchase Now</a>
-                  </div>
-                </div>
-              </div>
-              <div class="cs-height_40 cs-height_lg_40"></div>
-            </div>
-            
-            @endforeach
-            <!-- .col -->
-            {{-- <div class="col-lg-4">
+                            @foreach ($monthly as $item)
+                                <div class="col-lg-4">
+                                    <div class="cs-pricing_table cs-style1">
+                                        <div class="cs-pricing_image cs-accent_15_bg"><img
+                                                src="{{ asset('assets/img/premium-icon.svg') }}" alt=""></div>
+                                        <div class="cs-pricing_table_in">
+                                            @if ($item->title != null)
+                                                <div class="cs-pricing_label cs-accent_bg">{{ $item->title ?? '' }}</div>
+                                            @endif
+                                            <h2 class="cs-pricing_name cs-semi_bold">{{ $item->heading ?? '' }}</h2>
+                                            <ul class="cs-pricing_feature cs-mp0">
+                                                @php
+                                                    $arr = json_decode($item->point, true);
+                                                @endphp
+                                                @foreach ($arr as $item1)
+                                                    <li><i
+                                                            class="fas fa-check-circle cs-accent_color"></i>{{ $item1 ?? '' }}
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                            <div class="cs-price_wrap cs-bold cs-primary_font cs-accent_color_2">
+                                                <span class="cs-symble">$</span>
+                                                <span class="cs-price">{{ $item->price ?? '' }}</span>
+                                                <span class="cs-pricing_duration cs-medium">/month</span>
+                                            </div>
+                                            <div class="text-center">
+                                                <a href="{{ url('plan/'.$item->token??'') }}"
+                                                    class="cs-pricing_btn cs-primary_color cs-medium cs-accent_border cs-accent_bg_hover cs-rounded">Purchase
+                                                    Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cs-height_40 cs-height_lg_40"></div>
+                                </div>
+                            @endforeach
+                            <!-- .col -->
+                            {{-- <div class="col-lg-4">
               <div class="cs-pricing_table cs-style1">
                 <div class="cs-pricing_image cs-accent_15_bg"><img src="assets/img/premium-icon.svg" alt=""></div>
                 <div class="cs-pricing_table_in">
@@ -324,43 +344,47 @@ $data = content();
               </div>
               <div class="cs-height_40 cs-height_lg_40"></div>
             </div><!-- .col --> --}}
-          </div>
-        </div><!-- .cs-tab -->
-        <div id="tab_two" class="cs-tab">
-          <div class="row">
-            @foreach ($yearly as $item)
-                
-            <div class="col-lg-4">
-              <div class="cs-pricing_table cs-style1">
-                <div class="cs-pricing_image cs-accent_15_bg"><img src="{{asset('assets/img/premium-icon.svg')}}" alt=""></div>
-                <div class="cs-pricing_table_in">
-                  @if ($item->title!=null)
-                  <div class="cs-pricing_label cs-accent_bg">{{$item->title??''}}</div>
-                  @endif
-                  <h2 class="cs-pricing_name cs-semi_bold">{{$item->heading??''}}</h2>
-                  <ul class="cs-pricing_feature cs-mp0">
-                    @php
-                                        $arr = json_decode($item->point,true);
-                                    @endphp
-                                    @foreach ($arr as $item1)
-                    <li><i class="fas fa-check-circle cs-accent_color"></i>{{$item1??''}}</li>
-                    @endforeach
-                  </ul>
-                  <div class="cs-price_wrap cs-bold cs-primary_font cs-accent_color_2">
-                    <span class="cs-symble">$</span>
-                    <span class="cs-price">{{$item->price??''}}</span>
-                    <span class="cs-pricing_duration cs-medium">/Year</span>
-                  </div>
-                  <div class="text-center">
-                    <a href="#" class="cs-pricing_btn cs-primary_color cs-medium cs-accent_border cs-accent_bg_hover cs-rounded">Purchase Now</a>
-                  </div>
-                </div>
-              </div>
-              <div class="cs-height_40 cs-height_lg_40"></div>
-            </div>
-            
-            @endforeach<!-- .col -->
-            {{-- <div class="col-lg-4">
+                        </div>
+                    </div><!-- .cs-tab -->
+                    <div id="tab_two" class="cs-tab">
+                        <div class="row">
+                            @foreach ($yearly as $item)
+                                <div class="col-lg-4">
+                                    <div class="cs-pricing_table cs-style1">
+                                        <div class="cs-pricing_image cs-accent_15_bg"><img
+                                                src="{{ asset('assets/img/premium-icon.svg') }}" alt=""></div>
+                                        <div class="cs-pricing_table_in">
+                                            @if ($item->title != null)
+                                                <div class="cs-pricing_label cs-accent_bg">{{ $item->title ?? '' }}</div>
+                                            @endif
+                                            <h2 class="cs-pricing_name cs-semi_bold">{{ $item->heading ?? '' }}</h2>
+                                            <ul class="cs-pricing_feature cs-mp0">
+                                                @php
+                                                    $arr = json_decode($item->point, true);
+                                                @endphp
+                                                @foreach ($arr as $item1)
+                                                    <li><i
+                                                            class="fas fa-check-circle cs-accent_color"></i>{{ $item1 ?? '' }}
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                            <div class="cs-price_wrap cs-bold cs-primary_font cs-accent_color_2">
+                                                <span class="cs-symble">$</span>
+                                                <span class="cs-price">{{ $item->price ?? '' }}</span>
+                                                <span class="cs-pricing_duration cs-medium">/Year</span>
+                                            </div>
+                                            <div class="text-center">
+                                                <a href="{{ url('plan/'.$item->token??'') }}"
+                                                    class="cs-pricing_btn cs-primary_color cs-medium cs-accent_border cs-accent_bg_hover cs-rounded">Purchase
+                                                    Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cs-height_40 cs-height_lg_40"></div>
+                                </div>
+                            @endforeach
+                            <!-- .col -->
+                            {{-- <div class="col-lg-4">
               <div class="cs-pricing_table cs-style1">
                 <div class="cs-pricing_image cs-accent_15_bg"><img src="assets/img/premium-icon.svg" alt=""></div>
                 <div class="cs-pricing_table_in">
@@ -383,7 +407,7 @@ $data = content();
               </div>
               <div class="cs-height_40 cs-height_lg_40"></div>
             </div><!-- .col --> --}}
-            {{-- <div class="col-lg-4">
+                            {{-- <div class="col-lg-4">
               <div class="cs-pricing_table cs-style1">
                 <div class="cs-pricing_image cs-accent_15_bg"><img src="assets/img/premium-icon.svg" alt=""></div>
                 <div class="cs-pricing_table_in">
@@ -405,65 +429,73 @@ $data = content();
               </div>
               <div class="cs-height_40 cs-height_lg_40"></div>
             </div><!-- .col --> --}}
-          </div>
-        </div><!-- .cs-tab -->
-      </div>
+                        </div>
+                    </div><!-- .cs-tab -->
+                </div>
+            </div>
+        </div>
+        <div class="cs-height_100 cs-height_lg_40"></div>
     </div>
-  </div>
-  <div class="cs-height_100 cs-height_lg_40"></div>
-</div>
-<!-- End Pricing Table -->
+    <!-- End Pricing Table -->
 
-<!-- Start Team Member -->
-<div class="cs-height_135 cs-height_lg_75"></div>
-<div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-  <div class="cs-section_heading cs-style4 cs-size1">
-    <div class="cs-section_heading_left">
-      <div class="cs-section_subtitle">{!!$data['#home_team']['title']??''!!}</div>
-      <h2 class="cs-section_title cs-medium">{!!$data['#home_team']['heading']??''!!}</h2>
-      <div class="cs-section_text">{!!$data['#home_team']['description']??''!!}</div>
-    </div>
-    <div class="cs-section_heading_right">
-      <a href="#" class="cs-btn cs-style3 cs-btn_lg cs-primary_font cs-accent_color cs-medium">
-        <span class="cs-btn_text">Meet the whole team</span>
-        <span class="cs-btn_icon cs-center"><i class="fas fa-arrow-right"></i></span>
-      </a>
-    </div>
-  </div>
-  <div class="cs-height_90 cs-height_lg_70"></div>
-</div>
-<div class="container wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
-  <div class="row">
-    @foreach ($team as $item)
-        
-    <div class="col-lg-4">
-      <div class="cs-team_member cs-style1 text-center">
-        <div class="cs-member_image_box">
-          <svg class="cs-member_bg_layer1 cs-accent_color" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="304px" height="283px" fill='currentColor'>
-            <path fill-rule="evenodd" fill="inherit" d="M269.085,1.323 L39.843,48.858 C26.544,51.616 15.091,65.468 13.949,79.851 L0.247,252.538 C-0.881,266.768 8.476,278.491 21.448,278.738 L244.724,283.015 C264.729,283.399 282.735,268.844 284.343,250.477 L303.888,27.229 C305.518,8.605 289.658,-2.944 269.085,1.323 Z" />
-          </svg>
-          <svg class="cs-member_bg_layer2 cs-accent_color_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="299px" height="290px" fill='currentColor'>
-            <path fill-rule="evenodd" fill="inherit" d="M218.646,0.923 L19.429,47.966 C7.716,50.730 -0.845,63.906 0.058,77.599 L11.862,256.434 C12.921,272.471 24.206,285.779 37.376,285.981 L266.726,289.492 C287.526,289.811 301.790,272.864 297.979,251.946 L256.546,23.992 C253.451,6.931 236.279,-3.243 218.646,0.923 Z" />
-          </svg>
-          <svg class="cs-member_bg_layer3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="291px" height="279px">
-            <defs>
-              <pattern id="item-{{$item->id}}" patternUnits="userSpaceOnUse" width="320" height="345" patternTransform="rotate(0)">
-                <image xlink:href="{{asset($item->image??'assets/img/marketing/team2.jpg')}}" x="0" y="-18" transform="scale(0.9)" width="320" height="345"/>
-              </pattern>
-            </defs>
-            <path fill-rule="evenodd" fill="url(#item-{{$item->id}})" d="M57.516,1.033 L257.628,33.128 C270.274,35.156 280.881,47.778 281.516,61.550 L290.093,247.526 C290.889,264.779 280.057,278.998 265.640,278.998 L32.756,278.998 C13.202,278.998 -1.140,262.010 1.073,241.465 L24.448,24.508 C26.145,8.764 41.064,-1.606 57.516,1.033 Z"></path>
-          </svg>
+    <!-- Start Team Member -->
+    <div class="cs-height_135 cs-height_lg_75"></div>
+    <div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+        <div class="cs-section_heading cs-style4 cs-size1">
+            <div class="cs-section_heading_left">
+                <div class="cs-section_subtitle">{!! $data['#home_team']['title'] ?? '' !!}</div>
+                <h2 class="cs-section_title cs-medium">{!! $data['#home_team']['heading'] ?? '' !!}</h2>
+                <div class="cs-section_text">{!! $data['#home_team']['description'] ?? '' !!}</div>
+            </div>
+            <div class="cs-section_heading_right">
+                <a href="#" class="cs-btn cs-style3 cs-btn_lg cs-primary_font cs-accent_color cs-medium">
+                    <span class="cs-btn_text">Meet the whole team</span>
+                    <span class="cs-btn_icon cs-center"><i class="fas fa-arrow-right"></i></span>
+                </a>
+            </div>
         </div>
-        <div class="cs-member_info">
-          <h2 class="cs-member_name cs-semi_bold">{{$item->name??''}}</h2>
-          <div class="cs-member_designation">{{$item->profession??''}}</div>
-        </div>
-      </div>
-      <div class="cs-height_50 cs-height_lg_50"></div>
+        <div class="cs-height_90 cs-height_lg_70"></div>
     </div>
-    @endforeach
-    <!-- .col -->
-    {{-- <div class="col-lg-4">
+    <div class="container wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
+        <div class="row">
+            @foreach ($team as $item)
+                <div class="col-lg-4">
+                    <div class="cs-team_member cs-style1 text-center">
+                        <div class="cs-member_image_box">
+                            <svg class="cs-member_bg_layer1 cs-accent_color" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="304px" height="283px" fill='currentColor'>
+                                <path fill-rule="evenodd" fill="inherit"
+                                    d="M269.085,1.323 L39.843,48.858 C26.544,51.616 15.091,65.468 13.949,79.851 L0.247,252.538 C-0.881,266.768 8.476,278.491 21.448,278.738 L244.724,283.015 C264.729,283.399 282.735,268.844 284.343,250.477 L303.888,27.229 C305.518,8.605 289.658,-2.944 269.085,1.323 Z" />
+                            </svg>
+                            <svg class="cs-member_bg_layer2 cs-accent_color_2" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="299px" height="290px" fill='currentColor'>
+                                <path fill-rule="evenodd" fill="inherit"
+                                    d="M218.646,0.923 L19.429,47.966 C7.716,50.730 -0.845,63.906 0.058,77.599 L11.862,256.434 C12.921,272.471 24.206,285.779 37.376,285.981 L266.726,289.492 C287.526,289.811 301.790,272.864 297.979,251.946 L256.546,23.992 C253.451,6.931 236.279,-3.243 218.646,0.923 Z" />
+                            </svg>
+                            <svg class="cs-member_bg_layer3" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" width="291px" height="279px">
+                                <defs>
+                                    <pattern id="item-{{ $item->id }}" patternUnits="userSpaceOnUse" width="320"
+                                        height="345" patternTransform="rotate(0)">
+                                        <image xlink:href="{{ asset($item->image ?? 'assets/img/marketing/team2.jpg') }}"
+                                            x="0" y="-18" transform="scale(0.9)" width="320" height="345" />
+                                    </pattern>
+                                </defs>
+                                <path fill-rule="evenodd" fill="url(#item-{{ $item->id }})"
+                                    d="M57.516,1.033 L257.628,33.128 C270.274,35.156 280.881,47.778 281.516,61.550 L290.093,247.526 C290.889,264.779 280.057,278.998 265.640,278.998 L32.756,278.998 C13.202,278.998 -1.140,262.010 1.073,241.465 L24.448,24.508 C26.145,8.764 41.064,-1.606 57.516,1.033 Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="cs-member_info">
+                            <h2 class="cs-member_name cs-semi_bold">{{ $item->name ?? '' }}</h2>
+                            <div class="cs-member_designation">{{ $item->profession ?? '' }}</div>
+                        </div>
+                    </div>
+                    <div class="cs-height_50 cs-height_lg_50"></div>
+                </div>
+            @endforeach
+            <!-- .col -->
+            {{-- <div class="col-lg-4">
       <div class="cs-team_member cs-style1 text-center">
         <div class="cs-member_image_box">
           <svg class="cs-member_bg_layer1 cs-accent_color" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="304px" height="283px" fill='currentColor'>
@@ -488,7 +520,7 @@ $data = content();
       </div>
       <div class="cs-height_50 cs-height_lg_50"></div>
     </div><!-- .col --> --}}
-    {{-- <div class="col-lg-4">
+            {{-- <div class="col-lg-4">
       <div class="cs-team_member cs-style1 text-center">
         <div class="cs-member_image_box">
           <svg class="cs-member_bg_layer1 cs-accent_color" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="304px" height="283px" fill='currentColor'>
@@ -513,59 +545,66 @@ $data = content();
       </div>
       <div class="cs-height_50 cs-height_lg_50"></div>
     </div><!-- .col --> --}}
-  </div>
-</div>
-<div class="cs-height_85 cs-height_lg_25"></div>
-<!-- End Team Member -->
-
-<!-- Start Testimonial -->
-<div class="cs-gradient_bg_1">
-  <div class="cs-height_135 cs-height_lg_75"></div>
-  <div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-    <div class="cs-section_heading cs-style2 cs-size1">
-      <div class="cs-section_subtitle">{!!$data['#home_review']['title']??''!!}Testimonials</div>
-      <h2 class="cs-section_title cs-medium">{!!$data['#home_review']['heading']??''!!}</h2>
-    </div>
-    <div class="cs-height_65 cs-height_lg_35"></div>
-  </div>
-  <div class="container wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
-    <div class="cs-slider cs-style1 cs-gap-50 cs-remove_overflow">
-      <div class="cs-slider_arrows cs-style2 cs-hidden_mobile">
-        <div class="cs-slider_arrows_in">
-          <div class="cs-left_arrow cs-center cs-accent_color cs-accent_15_bg cs-accent_bg_hover cs-white_hover">
-            <i class="fas fa-long-arrow-alt-left"></i>
-          </div>
-          <div class="cs-right_arrow cs-center cs-accent_color cs-accent_15_bg cs-accent_bg_hover cs-white_hover">
-            <i class="fas fa-long-arrow-alt-right"></i>
-          </div>
         </div>
-      </div>
-      <div class="cs-slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="0" data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="1" data-md-slides="2" data-lg-slides="2" data-add-slides="2">
-        <div class="cs-slider_wrapper">
-          @foreach ($review as $item)
-              
-          <div class="cs-slide">
-            <div class="cs-testimonial cs-style4">
-              <div class="cs-testimonial_head">
-                <div class="cs-testimonial_icon cs-accent_color"><i class="fas fa-quote-left"></i></div>
-                <div class="cs-testimonial_text">{!!$item->description!!}</div>
-              </div>
-              <div class="cs-testimonial_info">
-                <div class="cs-testimonial_avatar"><img src="{{asset($item->image??'assets/img/marketing/avatar1.jpg')}}" alt="Avatar"></div>
-                <div class="cs-testimonial_meta">
-                  <h3 class="cs-testimonial_avatar_name cs-semi_bold">{{$item->name??''}}</h3>
-                  <div class="cs-testimonial_ratings cs-accent_10_bg_2">
-                    <div class="cs-review cs-accent_color_2" data-review="{{$item->rating??'0'}}">
-                      <div class="cs-review_in"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    </div>
+    <div class="cs-height_85 cs-height_lg_25"></div>
+    <!-- End Team Member -->
+
+    <!-- Start Testimonial -->
+    <div class="cs-gradient_bg_1">
+        <div class="cs-height_135 cs-height_lg_75"></div>
+        <div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+            <div class="cs-section_heading cs-style2 cs-size1">
+                <div class="cs-section_subtitle">{!! $data['#home_review']['title'] ?? '' !!}Testimonials</div>
+                <h2 class="cs-section_title cs-medium">{!! $data['#home_review']['heading'] ?? '' !!}</h2>
             </div>
-          </div>
-          @endforeach
-          <!-- .cs-slide -->
-          {{-- <div class="cs-slide">
+            <div class="cs-height_65 cs-height_lg_35"></div>
+        </div>
+        <div class="container wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
+            <div class="cs-slider cs-style1 cs-gap-50 cs-remove_overflow">
+                <div class="cs-slider_arrows cs-style2 cs-hidden_mobile">
+                    <div class="cs-slider_arrows_in">
+                        <div
+                            class="cs-left_arrow cs-center cs-accent_color cs-accent_15_bg cs-accent_bg_hover cs-white_hover">
+                            <i class="fas fa-long-arrow-alt-left"></i>
+                        </div>
+                        <div
+                            class="cs-right_arrow cs-center cs-accent_color cs-accent_15_bg cs-accent_bg_hover cs-white_hover">
+                            <i class="fas fa-long-arrow-alt-right"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="cs-slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="0"
+                    data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="1" data-md-slides="2"
+                    data-lg-slides="2" data-add-slides="2">
+                    <div class="cs-slider_wrapper">
+                        @foreach ($review as $item)
+                            <div class="cs-slide">
+                                <div class="cs-testimonial cs-style4">
+                                    <div class="cs-testimonial_head">
+                                        <div class="cs-testimonial_icon cs-accent_color"><i class="fas fa-quote-left"></i>
+                                        </div>
+                                        <div class="cs-testimonial_text">{!! $item->description !!}</div>
+                                    </div>
+                                    <div class="cs-testimonial_info">
+                                        <div class="cs-testimonial_avatar"><img
+                                                src="{{ asset($item->image ?? 'assets/img/marketing/avatar1.jpg') }}"
+                                                alt="Avatar"></div>
+                                        <div class="cs-testimonial_meta">
+                                            <h3 class="cs-testimonial_avatar_name cs-semi_bold">{{ $item->name ?? '' }}</h3>
+                                            <div class="cs-testimonial_ratings cs-accent_10_bg_2">
+                                                <div class="cs-review cs-accent_color_2"
+                                                    data-review="{{ $item->rating ?? '0' }}">
+                                                    <div class="cs-review_in"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                        <!-- .cs-slide -->
+                        {{-- <div class="cs-slide">
             <div class="cs-testimonial cs-style4">
               <div class="cs-testimonial_head">
                 <div class="cs-testimonial_icon cs-accent_color"><i class="fas fa-quote-left"></i></div>
@@ -584,7 +623,7 @@ $data = content();
               </div>
             </div>
           </div><!-- .cs-slide --> --}}
-          {{-- <div class="cs-slide">
+                        {{-- <div class="cs-slide">
             <div class="cs-testimonial cs-style4">
               <div class="cs-testimonial_head">
                 <div class="cs-testimonial_icon cs-accent_color"><i class="fas fa-quote-left"></i></div>
@@ -603,7 +642,7 @@ $data = content();
               </div>
             </div>
           </div><!-- .cs-slide --> --}}
-          {{-- <div class="cs-slide">
+                        {{-- <div class="cs-slide">
             <div class="cs-testimonial cs-style4">
               <div class="cs-testimonial_head">
                 <div class="cs-testimonial_icon cs-accent_color"><i class="fas fa-quote-left"></i></div>
@@ -622,49 +661,53 @@ $data = content();
               </div>
             </div>
           </div><!-- .cs-slide --> --}}
+                    </div>
+                </div><!-- .cs-slider_container -->
+                <div class="cs-pagination cs-style1 cs-accent_color_2 cs-hidden_desktop"></div>
+            </div><!-- .cs-slider -->
         </div>
-      </div><!-- .cs-slider_container -->
-      <div class="cs-pagination cs-style1 cs-accent_color_2 cs-hidden_desktop"></div>
-    </div><!-- .cs-slider -->
-  </div>
-  <div class="cs-height_140 cs-height_lg_80"></div>
-</div>
-<!-- End Testimonial -->
-
-<!-- Start Blog -->
-<div class="cs-height_135 cs-height_lg_75"></div>
-<div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-  <div class="cs-section_heading cs-style2 cs-size1 text-center">
-    <div class="cs-section_subtitle">{!!$data['#home_article']['title']??''!!}</div>
-    <h2 class="cs-section_title">{!!$data['#home_article']['heading']??''!!}</h2>
-  </div>
-  <div class="cs-height_65 cs-height_lg_35"></div>
-</div>
-<div class="container wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
-  <div class="row">
-    @foreach ($article as $item)
-    <div class="col-lg-4">
-      <div class="cs-post cs-style4">
-        <a href="#" class="cs-post_thumb">
-          <div class="cs-post_thumb_in cs-bg" data-src="{{asset($item->image??'assets/img/marketing/post1.jpg')}}"></div>
-          <div class="cs-post_thumb_hover cs-accent_bg_2"></div>
-        </a>
-        <div class="cs-post_label">
-          <a href="#" class="cs-avatar">
-            <img src="{{asset($item->auth_image??'assets/img/marketing/post-avatar1.jpg')}}" alt="Avatar" class="cs-avatar_img">
-          </a>
-          <div class="cs-post_label_right">
-            <div class="cs-avatar_name cs-primary_color"><a href="#">{{$item->auth_name??''}}</a></div>
-            <div class="cs-post_date">{{$item->auth_profession??''}}</div>
-          </div>
-        </div>
-        <h2 class="cs-post_title cs-accent_border_2 cs-semi_bold"><a href="#">{{$item->heading??''}}</a></h2>
-      </div>
-      <div class="cs-height_30 cs-height_lg_30"></div>
+        <div class="cs-height_140 cs-height_lg_80"></div>
     </div>
-    @endforeach
-    <!-- .col -->
-    {{-- <div class="col-lg-4">
+    <!-- End Testimonial -->
+
+    <!-- Start Blog -->
+    <div class="cs-height_135 cs-height_lg_75"></div>
+    <div class="container wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+        <div class="cs-section_heading cs-style2 cs-size1 text-center">
+            <div class="cs-section_subtitle">{!! $data['#home_article']['title'] ?? '' !!}</div>
+            <h2 class="cs-section_title">{!! $data['#home_article']['heading'] ?? '' !!}</h2>
+        </div>
+        <div class="cs-height_65 cs-height_lg_35"></div>
+    </div>
+    <div class="container wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
+        <div class="row">
+            @foreach ($article as $item)
+                <div class="col-lg-4">
+                    <div class="cs-post cs-style4">
+                        <a href="#" class="cs-post_thumb">
+                            <div class="cs-post_thumb_in cs-bg"
+                                data-src="{{ asset($item->image ?? 'assets/img/marketing/post1.jpg') }}"></div>
+                            <div class="cs-post_thumb_hover cs-accent_bg_2"></div>
+                        </a>
+                        <div class="cs-post_label">
+                            <a href="#" class="cs-avatar">
+                                <img src="{{ asset($item->auth_image ?? 'assets/img/marketing/post-avatar1.jpg') }}"
+                                    alt="Avatar" class="cs-avatar_img">
+                            </a>
+                            <div class="cs-post_label_right">
+                                <div class="cs-avatar_name cs-primary_color"><a href="#">{{ $item->auth_name ?? '' }}</a>
+                                </div>
+                                <div class="cs-post_date">{{ $item->auth_profession ?? '' }}</div>
+                            </div>
+                        </div>
+                        <h2 class="cs-post_title cs-accent_border_2 cs-semi_bold"><a href="#">{{ $item->heading ?? '' }}</a>
+                        </h2>
+                    </div>
+                    <div class="cs-height_30 cs-height_lg_30"></div>
+                </div>
+            @endforeach
+            <!-- .col -->
+            {{-- <div class="col-lg-4">
       <div class="cs-post cs-style4">
         <a href="#" class="cs-post_thumb">
           <div class="cs-post_thumb_in cs-bg" data-src="assets/img/marketing/post2.jpg"></div>
@@ -683,7 +726,7 @@ $data = content();
       </div>
       <div class="cs-height_30 cs-height_lg_30"></div>
     </div><!-- .col --> --}}
-    {{-- <div class="col-lg-4">
+            {{-- <div class="col-lg-4">
       <div class="cs-post cs-style4">
         <a href="#" class="cs-post_thumb">
           <div class="cs-post_thumb_in cs-bg" data-src="assets/img/marketing/post3.jpg"></div>
@@ -702,10 +745,10 @@ $data = content();
       </div>
       <div class="cs-height_30 cs-height_lg_30"></div>
     </div><!-- .col --> --}}
-  </div>
-</div>
-<div class="cs-height_105 cs-height_lg_45"></div>
-<!-- End Blog -->
+        </div>
+    </div>
+    <div class="cs-height_105 cs-height_lg_45"></div>
+    <!-- End Blog -->
 @endsection
 @section('scripts')
 @endsection

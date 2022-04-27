@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
 // });
 Route::get('/', 'HomeController@home')->name('home');
 Route::resource('newsletter', 'NewsletterController');
-
 // 2FA
 Route::group(['prefix' => '2fa', 'middleware' => ['auth', 'web']], function(){
     Route::get('/','LoginSecurityController@show2faForm');
@@ -23,13 +22,17 @@ Route::group(['prefix' => '2fa', 'middleware' => ['auth', 'web']], function(){
 Route::group(['as' => 'client.', 'middleware' => ['auth', '2fa']], function () {
     Route::get('home', 'HomeController@redirect');
     
-    Route::get('dashboard', 'HomeController@index')->name('home');
+    Route::get('dashboard', 'HomeController@redirect')->name('home');
     Route::get('change-password', 'ChangePasswordController@create')->name('password.create');
     Route::post('change-password', 'ChangePasswordController@update')->name('password.update');
     Route::get('test', 'TestsController@index')->name('test');
     Route::post('test', 'TestsController@store')->name('test.store');
     Route::get('results/{result_id}', 'ResultsController@show')->name('results.show');
     Route::get('send/{result_id}', 'ResultsController@send')->name('results.send');
+
+    Route::get('plan/{id}', 'StripeController@plan');
+    Route::post('plan_post', 'StripeController@plan_post')->name('plan.post');
+    Route::view('Payment_successfully', 'thanks');
 });
 
 Route::get('about', 'Admin\HomeController@about');
@@ -205,6 +208,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Package
     Route::resource('package', 'PackageController');
     Route::post('deletePackage', 'PackageController@destroy')->name('deletePackage');
+    // Package
+    Route::resource('packageSale', 'PackageSaleController');
+    Route::post('deletePackageSale', 'PackageSaleController@destroy')->name('deletePackageSale');
     // Team
     Route::resource('team', 'TeamController');
     Route::post('deleteTeam', 'TeamController@destroy')->name('deleteTeam');
@@ -233,10 +239,23 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('view-connection/{company}/{id}', 'Webbook\ConnectionController@view');
     Route::post('delete-connection/{company}/{id}', 'Webbook\ConnectionController@delete');
     
+    //Tax Rate
+    Route::get('taxrate/{id}', 'Webbook\TaxRateController@index');
+    Route::get('view-taxrate/{company}/{id}', 'Webbook\TaxRateController@view');
 
     //customer
     Route::get('customer/{id}', 'Webbook\CustomerController@customer');
     Route::get('view-customer/{company}/{id}', 'Webbook\CustomerController@view');
+    //Financial
+    //Balancesheet
+    Route::get('balancesheet/{id}', 'Webbook\FinancialController@balancesheet');
+    Route::post('balancesheet', 'Webbook\FinancialController@get_balancesheet')->name('balancesheet');
+    //Profit & Lost
+    Route::get('profit_lost/{id}', 'Webbook\FinancialController@profit_lost');
+    Route::post('profit_lost', 'Webbook\FinancialController@get_profit_lost')->name('profit_lost');
+    //Cash Flow Statement
+    Route::get('cashflow/{id}', 'Webbook\FinancialController@cashflow');
+    Route::post('cashflow', 'Webbook\FinancialController@get_cashflow')->name('cashflow');
 });
 
 

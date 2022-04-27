@@ -19,8 +19,8 @@ class PackageController extends Controller
     public function index()
     {
         abort_if(Gate::denies('package_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $package = Package::orderBy('created_at','DESC')->get();
-        return view('admin/package.index',compact('package'));
+        $package = Package::orderBy('created_at', 'DESC')->get();
+        return view('admin/package.index', compact('package'));
     }
 
     /**
@@ -32,7 +32,7 @@ class PackageController extends Controller
     {
         abort_if(Gate::denies('package_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $packagePoint = PackagePoint::all();
-        return view('admin/package.create',compact('packagePoint'));
+        return view('admin/package.create', compact('packagePoint'));
     }
 
     /**
@@ -51,15 +51,30 @@ class PackageController extends Controller
                 'point' => 'required'
             ]
         );
-        
+
         $package = new Package;
         $package->heading = $request->heading;
         $package->title = $request->title;
+        if ($request->type == '0') {
+            $package->days = 30;
+        } else {
+            $package->days = 365;
+        }
+        // Available alpha caracters
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characters1 = '@#$%^&*()';
+
+        // generate a pin based on 2 * 7 digits + a random character
+        $pin =$characters[rand(0, strlen($characters) - 1)]
+         .$characters[rand(0, strlen($characters1) - 1)]
+            . $characters1[rand(0, strlen($characters1) - 1)]
+            .mt_rand(1000, 9999);
+        $package->token = $pin;
         $package->type = $request->type;
         $package->point = json_encode($request->point);
         $package->price = $request->price;
         $package->save();
-        return redirect('admin/package')->with('success','Package has created!');
+        return redirect('admin/package')->with('success', 'Package has created!');
     }
 
     /**
@@ -84,7 +99,7 @@ class PackageController extends Controller
         abort_if(Gate::denies('package_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $package = Package::find($id);
         $packagePoint = PackagePoint::all();
-        return view('admin/package.edit',compact('package','packagePoint'));
+        return view('admin/package.edit', compact('package', 'packagePoint'));
     }
 
     /**
@@ -105,12 +120,17 @@ class PackageController extends Controller
         );
         $package = Package::find($id);
         $package->heading = $request->heading;
+        if ($request->type == '0') {
+            $package->days = 30;
+        } else {
+            $package->days = 365;
+        }
         $package->title = $request->title;
         $package->type = $request->type;
         $package->point = $request->point;
         $package->price = $request->price;
         $package->update();
-        return redirect('admin/package')->with('success','Package has updated!');
+        return redirect('admin/package')->with('success', 'Package has updated!');
     }
 
     /**

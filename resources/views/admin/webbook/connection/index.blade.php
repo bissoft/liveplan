@@ -89,6 +89,16 @@
                                             <input type="submit" class="btn btn-danger btn-sm"
                                                 value="{{ trans('global.delete') }}">
                                         </form>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-dark btn-sm dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                More
+                                            </button>
+                                            <div class="dropdown-menu" style="position: initial;">
+                                                <a class="dropdown-item" href="{{url('admin/bank_balance/'.$id.'/'.$item['id'])}}">Banking Account Balance</a>
+                                                <div class="dropdown-divider"></div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

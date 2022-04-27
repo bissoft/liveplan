@@ -9,7 +9,6 @@ use Gate;
 
 class CustomerController extends Controller
 {
-
     public function customer($id)
     {
         abort_if(Gate::denies('webbook_customer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -40,7 +39,7 @@ class CustomerController extends Controller
                 "https://api.codat.io/companies/$company/data/customers/$id",
                 [
                     'headers' => [
-                        'Authorization' => ' Basic R2sxdnpwM1JOZXNSRjYwa05Wb2ZIc2hVbGlEcmNSZ2kwVjlzZzNsRA==',
+                        'Authorization' => env("QB_Auth"),
                     ]
                 ]
             );
@@ -48,7 +47,7 @@ class CustomerController extends Controller
             $customer = json_decode($response, true);
             return view('admin/webbook/customer.show', compact('customer', 'company'));
         } catch (\Exception $e) {
-            return back()->with('error', 'No Data Found!');
+            return back()->with('error', $e->getMessage());
         }
     }
 

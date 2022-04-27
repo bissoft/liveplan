@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '83d66c892c9388fbd775f0a8aeda261a092b61e2',
+        'reference' => '70b50bad403b7784f07789bbfbad7414ee630708',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -547,7 +547,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '83d66c892c9388fbd775f0a8aeda261a092b61e2',
+            'reference' => '70b50bad403b7784f07789bbfbad7414ee630708',
             'dev_requirement' => false,
         ),
         'laravel/passport' => array(
@@ -644,12 +644,12 @@
             ),
         ),
         'maatwebsite/excel' => array(
-            'pretty_version' => '3.1.38',
-            'version' => '3.1.38.0',
+            'pretty_version' => '3.1.39',
+            'version' => '3.1.39.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../maatwebsite/excel',
             'aliases' => array(),
-            'reference' => 'dff132ce4d30b19863f4e84de1613fca99604992',
+            'reference' => '5165334de44c6f7788a5818a1d019aa71a43e092',
             'dev_requirement' => false,
         ),
         'maennchen/zipstream-php' => array(
@@ -860,12 +860,12 @@
             'dev_requirement' => true,
         ),
         'phpoffice/phpspreadsheet' => array(
-            'pretty_version' => '1.22.0',
-            'version' => '1.22.0.0',
+            'pretty_version' => '1.23.0',
+            'version' => '1.23.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phpoffice/phpspreadsheet',
             'aliases' => array(),
-            'reference' => '3a9e29b4f386a08a151a33578e80ef1747037a48',
+            'reference' => '21e4cf62699eebf007db28775f7d1554e612ed9e',
             'dev_requirement' => false,
         ),
         'phpoption/phpoption' => array(
@@ -1042,8 +1042,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -1215,12 +1215,12 @@
             'dev_requirement' => true,
         ),
         'stripe/stripe-php' => array(
-            'pretty_version' => 'v7.123.0',
-            'version' => '7.123.0.0',
+            'pretty_version' => 'v7.125.0',
+            'version' => '7.125.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../stripe/stripe-php',
             'aliases' => array(),
-            'reference' => '4e44559275eb66dc44f14c4c8dd3fedf9ed33ef9',
+            'reference' => '822c00aa380c10c2a3c55d105c5da72ad577b7c4',
             'dev_requirement' => false,
         ),
         'swiftmailer/swiftmailer' => array(
