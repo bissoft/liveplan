@@ -2153,3 +2153,25 @@ padding: 14px 10px;
 		display: block;
 	}
 }
+
+
+
+@media (min-width: 576px){
+.varing-ammount-modal  .modal-dialog {
+    max-width: 1100px;
+    margin: 1.75rem auto;
+}
+}
+.cahrt-value {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+}
+ .cahrt-value .input-filed{
+ width: 72px;
+ margin-right: 10px;
+ }
+ .cahrt-value label{
+ 	margin-bottom: 5px;
+ 	margin-top: 10px;
+ }

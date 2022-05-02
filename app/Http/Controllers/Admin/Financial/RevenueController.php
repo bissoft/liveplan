@@ -47,41 +47,45 @@ class RevenueController extends Controller
         $revenue = new Revenue;
         $revenue->name = $request->name;
         $revenue->type = $request->type;
-        $revenue->constant = $request->constant;
         if ($request->type == 1) {
+            $revenue->constant = $request->constant;
+            $revenue->unit_price_constant = $request->sale_constant;
             if ($request->constant == 0) {
                 $revenue->amount = $request->constant_amount;
                 $revenue->amount_type = $request->constant_type;
                 $request->revenue_start = $request->constant_start;
             } else {
                 $data = [
-                    $request->month0, $request->month1, $request->month2, $request->month3,
-                    $request->month4, $request->month5, $request->month6, $request->month7, $request->month8,
-                    $request->month9, $request->month10, $request->year1, $request->year2, $request->year3, $request->year4, $request->year5
+                    $request->unit_month0, $request->unit_month1, $request->unit_month2, $request->unit_month3,
+                    $request->unit_month4, $request->unit_month5, $request->unit_month6, $request->unit_month7, $request->unit_month8,
+                    $request->unit_month9, $request->unit_month10, $request->unit_month11, $request->unit_month_total, $request->unit_year2, $request->unit_year3, $request->unit_year4, $request->unit_year5
                 ];
                 $revenue->amount = json_encode($data);
             }
-            if ($request->unit_constant == 0) {
-                $revenue->unit_price = $request->unit_constant_price;
+            if ($request->sale_constant == 0) {
+                $revenue->unit_price = $request->sale_constant_price;
             } else {
                 $data1 = [
-                    $request->unit_month0, $request->unit_month1, $request->unit_month2, $request->unit_month3,
-                    $request->unit_month4, $request->unit_month5, $request->unit_month6, $request->unit_month7, $request->unit_month8,
-                    $request->unit_month9, $request->unit_month10, $request->unit_year2, $request->unit_year3, $request->unit_year4, $request->unit_year5
+                    $request->sale_month0, $request->sale_month1, $request->sale_month2, $request->sale_month3,
+                    $request->sale_month4, $request->sale_month5, $request->sale_month6, $request->sale_month7, $request->sale_month8,
+                    $request->sale_month9, $request->sale_month10, $request->sale_month11, $request->sale_year1, $request->sale_year2, $request->sale_year3, $request->sale_year4, $request->sale_year5
                 ];
                 $revenue->unit_price = json_encode($data1);
             }
         }
         if ($request->type == 2) {
+
+            $revenue->constant = $request->billable_constant;
+            $revenue->unit_price_constant = $request->billable_hour_constant;
             if ($request->billable_constant == 0) {
                 $revenue->amount = $request->billable_constant_amount;
                 $revenue->amount_type = $request->billable_constant_type;
                 $request->revenue_start = $request->billable_start;
             } else {
                 $data = [
-                    $request->month0, $request->month1, $request->month2, $request->month3,
-                    $request->month4, $request->month5, $request->month6, $request->month7, $request->month8,
-                    $request->month9, $request->month10, $request->year1, $request->year2, $request->year3, $request->year4, $request->year5
+                    $request->billable_month0, $request->billable_month1, $request->billable_month2, $request->billable_month3,
+                    $request->billable_month4, $request->billable_month5, $request->billable_month6, $request->billable_month7, $request->billable_month8,
+                    $request->billable_month9, $request->billable_month10, $request->billable_month11, $request->billable_month_total, $request->billable_year2, $request->billable_year3, $request->billable_year4, $request->billable_year5
                 ];
                 $revenue->amount = json_encode($data);
             }
@@ -89,23 +93,24 @@ class RevenueController extends Controller
                 $revenue->unit_price = $request->billable_hour_amount;
             } else {
                 $data1 = [
-                    $request->unit_month0, $request->unit_month1, $request->unit_month2, $request->unit_month3,
-                    $request->unit_month4, $request->unit_month5, $request->unit_month6, $request->unit_month7, $request->unit_month8,
-                    $request->unit_month9, $request->unit_month10, $request->unit_year2, $request->unit_year3, $request->unit_year4, $request->unit_year5
+                    $request->rate_month0, $request->rate_month1, $request->rate_month2, $request->rate_month3,
+                    $request->rate_month4, $request->rate_month5, $request->rate_month6, $request->rate_month7, $request->rate_month8,
+                    $request->rate_month9, $request->rate_month10, $request->rate_month11, $request->rate_year1, $request->rate_year2, $request->rate_year3, $request->rate_year4, $request->rate_year5
                 ];
                 $revenue->unit_price = json_encode($data1);
             }
         }
         if ($request->type == 4) {
+            $revenue->constant = $request->revenue_constant;
             if ($request->revenue_constant == 0) {
                 $revenue->amount = $request->revenue_constant_amount;
                 $revenue->amount_type = $request->revenue_constant_type;
                 $request->revenue_start = $request->revenue_start;
             } else {
                 $data = [
-                    $request->month0, $request->month1, $request->month2, $request->month3,
-                    $request->month4, $request->month5, $request->month6, $request->month7, $request->month8,
-                    $request->month9, $request->month10, $request->year1, $request->year2, $request->year3, $request->year4, $request->year5
+                    $request->revenue_month0, $request->revenue_month1, $request->revenue_month2, $request->revenue_month3,
+                    $request->revenue_month4, $request->revenue_month5, $request->revenue_month6, $request->revenue_month7, $request->revenue_month8,
+                    $request->revenue_month9, $request->revenue_month10, $request->revenue_month11, $request->revenue_month_total, $request->revenue_year2, $request->revenue_year3, $request->revenue_year4, $request->revenue_year5
                 ];
                 $revenue->amount = json_encode($data);
             }
