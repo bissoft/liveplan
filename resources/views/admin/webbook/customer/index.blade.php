@@ -89,9 +89,15 @@
 
                                     <td style="min-width: 190px;">
                                         @can('webbook_customer_view')
-                                            <a class="btn btn-warning btn-sm"
+                                            <a class="btn btn-info btn-sm"
                                                 href="{{ url('admin/view-customer/'.$company.'/'.$item['id']) }}">
                                                 View
+                                            </a>
+                                        @endcan
+                                        @can('webbook_customer_attachment')
+                                            <a class="btn btn-warning btn-sm"
+                                                href="{{ url('admin/customer-attachment/'.$company.'/'.$item['id']) }}">
+                                                Attachments
                                             </a>
                                         @endcan
                                         @can('webbook_customer_delete')

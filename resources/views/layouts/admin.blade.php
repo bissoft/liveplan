@@ -12,6 +12,7 @@
     <!--favicon-->
     <!-- <link rel="icon" href="{{asset('dash-assets/images/favicon-32x32.png')}}" type="image/png" /> -->
     <!--plugins-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <link href="{{asset('dash-assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
     <link href="{{asset('dash-assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet" />
     <link href="{{asset('dash-assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}" rel="stylesheet" />
@@ -478,6 +479,10 @@
                 <li>
                     <a href="{{ url('admin/paid-users') }}"> <i class="fa fa-usd"></i> <span>Paid
                             Users</span></a>
+                </li>
+                <li>
+                    <a href="{{ url('admin/revenue') }}"> <i class="fa fa-usd"></i> <span>
+                            Forecast</span></a>
                 </li>
                 <li>
                     <a href="javascript: void(0);">

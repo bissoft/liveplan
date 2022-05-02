@@ -224,6 +224,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('newsletter', 'NewsletterController');
     Route::post('deleteNewsletter', 'NewsletterController@destroy')->name('deleteNewsletter');
 
+
+    // Revenue
+    Route::resource('revenue', 'Financial\RevenueController');
+
     //Webbooks
     //companies
     Route::resource('companies', 'Webbook\CompanyController');
@@ -246,6 +250,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     //customer
     Route::get('customer/{id}', 'Webbook\CustomerController@customer');
     Route::get('view-customer/{company}/{id}', 'Webbook\CustomerController@view');
+    //attachment
+    Route::get('customer-attachment/{company}/{id}', 'Webbook\AttachmentController@index');
+    Route::post('fetch_attachment', 'Webbook\AttachmentController@fetch')->name('fetchAttachment');
     //Financial
     //Balancesheet
     Route::get('balancesheet/{id}', 'Webbook\FinancialController@balancesheet');
