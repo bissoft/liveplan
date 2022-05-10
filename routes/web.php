@@ -227,6 +227,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Revenue
     Route::resource('revenue', 'Financial\RevenueController');
+    Route::post('deleteRevenue', 'Financial\RevenueController@destroy')->name('deleteRevenue');
 
     //Webbooks
     //companies
