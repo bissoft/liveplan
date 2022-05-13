@@ -4,7 +4,7 @@
         @include('layouts.forcost')
         <div class="tab-content">
             <div class="tab-pane fade show active" id="success-pills-home" role="tabpanel">
-                <h4 class="mb-2">Renvue</h4>
+                <h4 class="mb-2">Direct Cost</h4>
                 @if (session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
@@ -28,10 +28,9 @@
                     </div>
                 </div>
                 <div class="">
-                    <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Revenue
-                        Stream</button>
+                    <a class="btn btn-primary my-3" href="{{route('admin.direct-cost.create')}}">Add Direct Cost</a>
                 </div>
-                {{-- Revenue --}}
+                {{-- Direct Cost --}}
                 <div class="row mx-0">
                     <div class="card">
                         <div class="card-body table-responsive">
@@ -41,313 +40,263 @@
                                         <th>
                                             <button class="btn bg-transparent p-1"><i class="fa fa-angle-down"></i></button>
                                         </th>
-                                        <th class="sub-title">Revenue</th>
+                                        <th class="sub-title">Direct Cost</th>
                                         @php
                                             use Carbon\Carbon;
                                         @endphp
                                         @for ($i = 0; $i < 12; $i++)
                                             <th scope="col">{{ Carbon::now()->addMonth($i)->format('M Y') }}</th>
                                         @endfor
-                                        @for ($i = 1; $i < 6; $i++)
+                                        @for ($i = 2; $i < 6; $i++)
                                             <th scope="col">FY{{ Carbon::now()->addYear($i)->format('Y') }}</th>
                                         @endfor
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($revenue as $item)
+                                    @foreach ($direct_cost as $item)
                                         <tr id="id_row">
                                             <td>
-                                                @if ($item->type == 1 || $item->type == 2 || $item->type == 3)
-                                                    <button class="toggler" data-prod-cat="{{ $item->id }}"
-                                                        class="btn bg-transparent p-1"><i
-                                                            class="fa fa-angle-down"></i></button>
-                                                @endif
+                                                
                                             </td>
                                             <td class="sub-title"> {{ $item->name ?? '' }}
                                                 <div class="icons">
-                                                    <a href="{{ route('admin.revenue.edit', $item->id) }}"
+                                                    <a href="{{ route('admin.direct-cost.edit', $item->id) }}"
                                                         class="btn bg-transparent p-0"><i class="fa fa-edit"></i></a>
                                                     <a href="#" class="btn bg-transparent p-0"><i
                                                             class="fa fa-copy"></i></a>
                                                     <a class="btn bg-transparent p-0"
-                                                        onclick="revenueDelete{{ $item->id }}({{ $item->id }})">
+                                                        onclick="directcostDelete{{ $item->id }}({{ $item->id }})">
                                                         <i class="fa fa-trash">
                                                         </i>
                                                     </a>
                                                 </div>
                                             </td>
 
-                                            {{-- Unit Sell & Price (Type 1) --}}
-                                            @if ($item->type == 1)
-                                                {{-- if unit sell & price both constant --}}
-                                                @if ($item->unit_sell == 0 && $item->unit_price == 0)
+                                            {{-- Gerenal Cost --}}
+                                            @if ($item->cost == 0)
+                                                {{-- if constant --}}
+                                                @if ($item->constant == 0)
                                                     @for ($i = 0; $i < 12; $i++)
-                                                        <td>{{ $item->unit_sell_amount * $item->unit_price_amount }}
+                                                        <td>{{ $item->cost_amount??'' }}
                                                         </td>
                                                     @endfor
-                                                    @for ($i = 1; $i < 6; $i++)
-                                                        @if ($i == 1)
-                                                            <td>{{ $item->unit_sell_amount * $item->unit_price_amount }}
+                                                    @for ($i = 2; $i < 6; $i++)
+                                                            <td>{{ $item->cost_amount * $item->cost_amount }}
                                                             </td>
-                                                        @else
-                                                            <td>{{ $item->unit_sell_amount * $item->unit_price_amount * 12 }}
-                                                            </td>
-                                                        @endif
                                                     @endfor
-
-                                                    {{-- if unit sell varying and price constant --}}
-                                                @elseif ($item->unit_sell == 1 && $item->unit_price == 0)
+                                                
+                                                    {{-- if varying --}}
+                                                @elseif ($item->constant == 1)
                                                     @php
-                                                        $arr = json_decode($item->unit_sell_amount, true);
+                                                        $arr = json_decode($item->cost_amount, true);
                                                     @endphp
                                                     @foreach ($arr as $item1)
                                                         <td>
-                                                            {{ $item1 * $item->unit_price_amount }}
+                                                            {{ $item1??'' }}
                                                         </td>
                                                     @endforeach
 
-                                                    {{-- if unit sell constant & price variying --}}
-                                                @elseif ($item->unit_sell == 0 && $item->unit_price == 1)
-                                                    @php
-                                                        $arr1 = json_decode($item->unit_price_amount, true);
-                                                    @endphp
-                                                    @foreach ($arr1 as $item1)
-                                                        <td>
-                                                            {{ $item1 * $item->unit_sell_amount }}
-                                                        </td>
-                                                    @endforeach
-
-                                                    {{-- if unit sell & price both varying --}}
-                                                @elseif ($item->unit_sell == 1 && $item->unit_price == 1)
-                                                    @php
-                                                        $arr = json_decode($item->unit_sell_amount, true);
-                                                        $arr1 = json_decode($item->unit_price_amount, true);
-                                                    @endphp
-
-                                                    @for ($i = 0; $i < 17; $i++)
-                                                        {{-- {{dd($arr1)}} --}}
-                                                        <td>
-                                                            {{ $arr[$i] * $arr1[$i] }}
+                                                    {{-- if overall --}}
+                                                @else
+                                                @for ($i = 0; $i < 12; $i++)
+                                                        <td>{{ $item->cost_amount??'' }}
                                                         </td>
                                                     @endfor
-                                                @else
+                                                    @for ($i = 2; $i < 6; $i++)
+                                                            <td>{{ $item->cost_amount * $item->cost_amount }}
+                                                            </td>
+                                                    @endfor
                                                 @endif
                                             @endif
-                                            {{-- Billable Hour (Type 2) --}}
-                                            @if ($item->type == 2)
-                                                {{-- both constant --}}
-                                                @if ($item->bill_for == 0 && $item->bill_hour == 0)
-                                                    @for ($i = 0; $i < 12; $i++)
-                                                        <td>{{ $item->bill_amount * $item->bill_hour_amount }}
-                                                        </td>
-                                                    @endfor
-                                                    @for ($i = 1; $i < 6; $i++)
-                                                        @if ($i == 1)
-                                                            <td>{{ $item->bill_amount * $item->bill_hour_amount }}
-                                                            </td>
-                                                        @else
-                                                            <td>{{ $item->bill_amount * $item->bill_hour_amount * 12 }}
-                                                            </td>
+                                            {{-- Revenue cost --}}
+                                                @if ($item->cost == 1)
+                                                    {{-- Unit Sell & Price (Type 1) --}}
+                                                    @if($item->constant==0)
+                                                        @if ($item->revenue_name->type == 1)
+                                                        {{-- if unit sell & price both constant --}}
+                                                            @if ($item->revenue_name->unit_sell == 0 && $item->revenue_name->unit_price == 0)
+                                                                @for ($i = 0; $i < 12; $i++)
+                                                                    <td>{{ (($item->revenue_name->unit_sell_amount * $item->revenue_name->unit_price_amount)/100)*$item->cost_amount }}
+                                                                    </td>
+                                                                @endfor
+                                                                @for ($i = 2; $i < 6; $i++)
+                                                                    @if ($i == 1)
+                                                                        <td>{{ (($item->revenue_name->unit_sell_amount * $item->revenue_name->unit_price_amount)/100)*$item->cost_amount }}
+                                                                        </td>
+                                                                    @else
+                                                                        <td>{{ (($item->revenue_name->unit_sell_amount * $item->revenue_name->unit_price_amount * 12)/100)*$item->cost_amount }}
+                                                                        </td>
+                                                                    @endif
+                                                                @endfor
+
+                                                                {{-- if unit sell varying and price constant --}}
+                                                            @elseif ($item->revenue_name->unit_sell == 1 && $item->revenue_name->unit_price == 0)
+                                                                @php
+                                                                    $arr = json_decode($item->revenue_name->unit_sell_amount, true);
+                                                                @endphp
+                                                                @foreach ($arr as $item1)
+                                                                    <td>
+                                                                        {{ (($item1 * $item->revenue_name->unit_price_amount)/100)*$item->cost_amount }}
+                                                                    </td>
+                                                                @endforeach
+
+                                                                {{-- if unit sell constant & price variying --}}
+                                                            @elseif ($item->revenue_name->unit_sell == 0 && $item->revenue_name->unit_price == 1)
+                                                                @php
+                                                                    $arr1 = json_decode($item->revenue_name->unit_price_amount, true);
+                                                                @endphp
+                                                                @foreach ($arr1 as $item1)
+                                                                    <td>
+                                                                        {{ (($item1 * $item->revenue_name->unit_sell_amount)/100)*$item->cost_amount }}
+                                                                    </td>
+                                                                @endforeach
+
+                                                                {{-- if unit sell & price both varying --}}
+                                                            @elseif ($item->revenue_name->unit_sell == 1 && $item->revenue_name->unit_price == 1)
+                                                                @php
+                                                                    $arr = json_decode($item->revenue_name->unit_sell_amount, true);
+                                                                    $arr1 = json_decode($item->revenue_name->unit_price_amount, true);
+                                                                @endphp
+
+                                                                @for ($i = 0; $i < 17; $i++)
+                                                                    {{-- {{dd($arr1)}} --}}
+                                                                    <td>
+                                                                        {{ (($arr[$i] * $arr1[$i])/100)*$item->cost_amount }}
+                                                                    </td>
+                                                                @endfor
+                                                            @else
+                                                            @endif
                                                         @endif
-                                                    @endfor
+                                                        {{-- Billable Hour (Type 2) --}}
+                                                        @if ($item->revenue_name->type == 2)
+                                                            {{-- both constant --}}
+                                                            @if ($item->revenue_name->bill_for == 0 && $item->revenue_name->bill_hour == 0)
+                                                                @for ($i = 0; $i < 12; $i++)
+                                                                    <td>{{ (($item->revenue_name->bill_amount * $item->revenue_name->bill_hour_amount)/100)*$item->cost_amount }}
+                                                                    </td>
+                                                                @endfor
+                                                                @for ($i = 1; $i < 6; $i++)
+                                                                    @if ($i == 1)
+                                                                        <td>{{ (($item->revenue_name->bill_amount * $item->revenue_name->bill_hour_amount)/100)*$item->cost_amount }}
+                                                                        </td>
+                                                                    @else
+                                                                        <td>{{ (($item->revenue_name->bill_amount * $item->revenue_name->bill_hour_amount * 12)/100)*$item->cost_amount }}
+                                                                        </td>
+                                                                    @endif
+                                                                @endfor
 
-                                                    {{-- if one varying and one constant --}}
-                                                @elseif ($item->bill_for == 1 && $item->bill_hour == 0)
-                                                    @php
-                                                        $arr = json_decode($item->bill_amount, true);
-                                                    @endphp
-                                                    @foreach ($arr as $item1)
-                                                        <td>
-                                                            {{ $item1 * $item->bill_hour_amount }}
-                                                        </td>
-                                                    @endforeach
+                                                                {{-- if one varying and one constant --}}
+                                                            @elseif ($item->revenue_name->bill_for == 1 && $item->revenue_name->bill_hour == 0)
+                                                                @php
+                                                                    $arr = json_decode($item->revenue_name->bill_amount, true);
+                                                                @endphp
+                                                                @foreach ($arr as $item1)
+                                                                    <td>
+                                                                        {{ (($item1 * $item->revenue_name->bill_hour_amount)/100)*$item->cost_amount }}
+                                                                    </td>
+                                                                @endforeach
 
-                                                    {{-- if unit sell constant & price variying --}}
-                                                @elseif ($item->bill_for == 0 && $item->bill_hour == 1)
-                                                    @php
-                                                        $arr1 = json_decode($item->bill_hour_amount, true);
-                                                    @endphp
-                                                    @foreach ($arr1 as $item1)
-                                                        <td>
-                                                            {{ $item1 * $item->bill_for_amount }}
-                                                        </td>
-                                                    @endforeach
+                                                                {{-- if unit sell constant & price variying --}}
+                                                            @elseif ($item->revenue_name->bill_for == 0 && $item->revenue_name->bill_hour == 1)
+                                                                @php
+                                                                    $arr1 = json_decode($item->revenue_name->bill_hour_amount, true);
+                                                                @endphp
+                                                                @foreach ($arr1 as $item1)
+                                                                    <td>
+                                                                        {{ (($item1 * $item->revenue_name->bill_for_amount)/100)*$item->cost_amount }}
+                                                                    </td>
+                                                                @endforeach
 
-                                                    {{-- if unit sell & price both varying --}}
-                                                @elseif ($item->bill_for == 1 && $item->bill_hour == 1)
-                                                    @php
-                                                        $arr = json_decode($item->bill_for_amount, true);
-                                                        $arr1 = json_decode($item->bill_hour_amount, true);
-                                                    @endphp
+                                                                {{-- if unit sell & price both varying --}}
+                                                            @elseif ($item->revenue_name->bill_for == 1 && $item->revenue_name->bill_hour == 1)
+                                                                @php
+                                                                    $arr = json_decode($item->revenue_name->bill_for_amount, true);
+                                                                    $arr1 = json_decode($item->revenue_name->bill_hour_amount, true);
+                                                                @endphp
 
-                                                    @for ($i = 0; $i < 17; $i++)
-                                                        {{-- {{dd($arr1)}} --}}
-                                                        <td>
-                                                            {{ $arr[$i] * $arr1[$i] }}
-                                                        </td>
-                                                    @endfor
-                                                @else
-                                                @endif
-                                            @endif
-                                            {{-- Recurring type 3 --}}
-                                            @if ($item->type == 3)
-                                                @if ($item->only_revenue == 0)
-                                                    @for ($i = 0; $i < 12; $i++)
-                                                        <td>{{ $item->only_revenue_amount ?? '' }}</td>
-                                                    @endfor
-                                                    @for ($i = 1; $i < 6; $i++)
-                                                        @if ($i == 1)
-                                                            <td>{{ $item->only_revenue_amount * 10 }}</td>
-                                                        @else
-                                                            <td>{{ $item->only_revenue_amount * 10 + $item->only_revenue_amount }}
-                                                            </td>
+                                                                @for ($i = 0; $i < 17; $i++)
+                                                                    {{-- {{dd($arr1)}} --}}
+                                                                    <td>
+                                                                        {{ (($arr[$i] * $arr1[$i])/100)*$item->cost_amount }}
+                                                                    </td>
+                                                                @endfor
+                                                            @else
+                                                            @endif
                                                         @endif
-                                                    @endfor
-                                                @else
-                                                    @php
-                                                        $arr = json_decode($item->only_revenue_amount, true);
-                                                    @endphp
-                                                    @foreach ($arr as $item1)
-                                                        <td>
-                                                            {{ $item1 }}
-                                                        </td>
-                                                    @endforeach
-                                                @endif
-                                            @endif
-                                            {{-- Only Revenue type 4 --}}
-                                            @if ($item->type == 4)
-                                                @if ($item->only_revenue == 0)
-                                                    @for ($i = 0; $i < 12; $i++)
-                                                        <td>{{ $item->only_revenue_amount ?? '' }}</td>
-                                                    @endfor
-                                                    @for ($i = 1; $i < 6; $i++)
-                                                        @if ($i == 1)
-                                                            <td>{{ $item->only_revenue_amount * 10 }}</td>
-                                                        @else
-                                                            <td>{{ $item->only_revenue_amount * 10 + $item->only_revenue_amount }}
-                                                            </td>
+                                                        {{-- Recurring type 3 --}}
+                                                        @if ($item->revenue_name->type == 3)
+                                                            @if ($item->revenue_name->only_revenue == 0)
+                                                                @for ($i = 0; $i < 12; $i++)
+                                                                    <td>{{ (($item->revenue_name->only_revenue_amount)/100)*$item->cost_amount }}</td>
+                                                                @endfor
+                                                                @for ($i = 1; $i < 6; $i++)
+                                                                    @if ($i == 1)
+                                                                        <td>{{ (($item->revenue_name->only_revenue_amount * 10)/100)*$item->cost_amount }}</td>
+                                                                    @else
+                                                                        <td>{{ (($item->revenue_name->only_revenue_amount * 10 + $item->revenue_name->only_revenue_amount)/100)*$item->cost_amount }}
+                                                                        </td>
+                                                                    @endif
+                                                                @endfor
+                                                            @else
+                                                                @php
+                                                                    $arr = json_decode($item->revenue_name->only_revenue_amount, true);
+                                                                @endphp
+                                                                @foreach ($arr as $item1)
+                                                                    <td>
+                                                                        {{ ($item1/100)*$item->cost_amount }}
+                                                                    </td>
+                                                                @endforeach
+                                                            @endif
                                                         @endif
-                                                    @endfor
-                                                @else
-                                                    @php
-                                                        $arr = json_decode($item->only_revenue_amount, true);
-                                                    @endphp
-                                                    @foreach ($arr as $item1)
-                                                        <td>
-                                                            {{ $item1 }}
-                                                        </td>
-                                                    @endforeach
+                                                        {{-- Only Revenue type 4 --}}
+                                                        @if ($item->revenue_name->type == 4)
+                                                            @if ($item->revenue_name->only_revenue == 0)
+                                                                @for ($i = 0; $i < 12; $i++)
+                                                                    <td>{{ (($item->revenue_name->only_revenue_amount)/100)*$item->cost_amount }}</td>
+                                                                @endfor
+                                                                @for ($i = 1; $i < 6; $i++)
+                                                                    @if ($i == 1)
+                                                                        <td>{{ (($item->revenue_name->only_revenue_amount * 10)/100)*$item->cost_amount }}</td>
+                                                                    @else
+                                                                        <td>{{ (($item->revenue_name->only_revenue_amount * 10 + $item->revenue_name->only_revenue_amount)/100)*$item->cost_amount }}
+                                                                        </td>
+                                                                    @endif
+                                                                @endfor
+                                                            @else
+                                                                @php
+                                                                    $arr = json_decode($item->revenue_name->only_revenue_amount, true);
+                                                                @endphp
+                                                                @foreach ($arr as $item1)
+                                                                    <td>
+                                                                        {{ ($item1/100)*$item->cost_amount }}
+                                                                    </td>
+                                                                @endforeach
+                                                            @endif
+                                                        @endif
+                                                    @endif
+                                                    @if($item->constant==1)
+                                                        @php
+                                                            $arr = json_decode($item->cost_amount, true);
+                                                        @endphp
+                                                        @foreach ($arr as $item1)
+                                                            <td>
+                                                                {{ $item1??'' }}
+                                                            </td>
+                                                        @endforeach
+                                                    @endif
+                                                    @if($item->constant==2)
+                                                        @for ($i = 0; $i < 12; $i++)
+                                                            <td>{{ $item->cost_amount??'' }}
+                                                            </td>
+                                                        @endfor
+                                                        @for ($i = 2; $i < 6; $i++)
+                                                                <td>{{ $item->cost_amount * $item->cost_amount }}
+                                                                </td>
+                                                        @endfor
+                                                    @endif
                                                 @endif
-                                            @endif
                                         </tr>
-                                        {{-- Sub parts of type 1 --}}
-                                        @if ($item->type == 1)
-                                            <tr class="cat{{ $item->id }}" style="display:none">
-                                                <td></td>
-                                                <td class="sub-title">Unit Sales</td>
-
-                                                @if ($item->unit_sell == 0)
-                                                    @for ($i = 0; $i < 12; $i++)
-                                                        <td>{{ $item->unit_sell_amount ?? '' }}</td>
-                                                    @endfor
-                                                    @for ($i = 1; $i < 6; $i++)
-                                                        @if ($i == 1)
-                                                            <td>{{ $item->unit_sell_amount }}</td>
-                                                        @else
-                                                            <td>{{ $item->unit_sell_amount * 12 }}</td>
-                                                        @endif
-                                                    @endfor
-                                                @else
-                                                    @php
-                                                        $arr = json_decode($item->unit_sell_amount, true);
-                                                    @endphp
-                                                    @foreach ($arr as $item1)
-                                                        <td>
-                                                            {{ $item1 }}
-                                                        </td>
-                                                    @endforeach
-                                                @endif
-                                            </tr>
-                                            <tr class="cat{{ $item->id }}" style="display:none">
-                                                <td></td>
-                                                <td class="sub-title">Unit Prices</td>
-                                                @if ($item->unit_price == 0)
-                                                    @for ($i = 0; $i < 12; $i++)
-                                                        <td>{{ $item->unit_price_amount ?? '' }}</td>
-                                                    @endfor
-                                                    @for ($i = 1; $i < 6; $i++)
-                                                        @if ($i == 1)
-                                                            <td>{{ $item->unit_price_amount }}</td>
-                                                        @else
-                                                            <td>{{ $item->unit_price_amount * 12 }}</td>
-                                                        @endif
-                                                    @endfor
-                                                @else
-                                                    @php
-                                                        $arr = json_decode($item->unit_price_amount, true);
-                                                    @endphp
-                                                    @foreach ($arr as $item1)
-                                                        <td>
-                                                            {{ $item1 }}
-                                                        </td>
-                                                    @endforeach
-                                                @endif
-                                            </tr>
-                                        @endif
-                                        {{-- Billable Type 2 sub parts --}}
-                                        @if ($item->type == 2)
-                                            <tr class="cat{{ $item->id }}" style="display:none">
-                                                <td></td>
-                                                <td class="sub-title">Billable Hours</td>
-
-                                                @if ($item->bill_for == 0)
-                                                    @for ($i = 0; $i < 12; $i++)
-                                                        <td>{{ $item->bill_amount ?? '' }}</td>
-                                                    @endfor
-                                                    @for ($i = 1; $i < 6; $i++)
-                                                        @if ($i == 1)
-                                                            <td>{{ $item->bill_amount }}</td>
-                                                        @else
-                                                            <td>{{ $item->bill_amount * 12 }}</td>
-                                                        @endif
-                                                    @endfor
-                                                @else
-                                                    @php
-                                                        $arr = json_decode($item->bill_amount, true);
-                                                    @endphp
-                                                    @foreach ($arr as $item1)
-                                                        <td>
-                                                            {{ $item1 }}
-                                                        </td>
-                                                    @endforeach
-                                                @endif
-                                            </tr>
-                                            <tr class="cat{{ $item->id }}" style="display:none">
-                                                <td></td>
-                                                <td class="sub-title">Hourly Rate</td>
-                                                @if ($item->bill_hour == 0)
-                                                    @for ($i = 0; $i < 12; $i++)
-                                                        <td>{{ $item->bill_hour_amount ?? '' }}</td>
-                                                    @endfor
-                                                    @for ($i = 1; $i < 6; $i++)
-                                                        @if ($i == 1)
-                                                            <td>{{ $item->bill_hour_amount }}</td>
-                                                        @else
-                                                            <td>{{ $item->bill_hour_amount * 12 }}</td>
-                                                        @endif
-                                                    @endfor
-                                                @else
-                                                    @php
-                                                        $arr = json_decode($item->bill_hour_amount, true);
-                                                    @endphp
-                                                    @foreach ($arr as $item1)
-                                                        <td>
-                                                            {{ $item1 }}
-                                                        </td>
-                                                    @endforeach
-                                                @endif
-                                            </tr>
-                                        @endif
+                                        
                                     @endforeach
                                 </tbody>
                                 <tfoot>
@@ -409,7 +358,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Tell us about this revenue stream</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Tell us about this direct cost</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -2461,9 +2410,9 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.10.0/tinymce.min.js"></script>
-    @foreach ($revenue as $item)
+    @foreach ($direct_cost as $item)
         <script>
-            function revenueDelete{{ $item->id }}(id) {
+            function directcostDelete{{ $item->id }}(id) {
                 swal({
                     title: "Are You Sure Want To Delete?",
                     icon: "warning",
@@ -2471,7 +2420,7 @@
                     dangerMode: true,
                 }).then((willDelete) => {
                     if (willDelete) {
-                        var url = '{{ route('admin.deleteRevenue', ':id') }}';
+                        var url = '{{ route('admin.deleteDirectCost', ':id') }}';
                         url = url.replace(':id', id);
                         $.ajax({
                             type: "POST",

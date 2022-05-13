@@ -228,6 +228,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Revenue
     Route::resource('revenue', 'Financial\RevenueController');
     Route::post('deleteRevenue', 'Financial\RevenueController@destroy')->name('deleteRevenue');
+    // Direct Cost
+    Route::resource('direct-cost', 'Financial\DirectCostController');
+    Route::post('deleteDirectCost', 'Financial\DirectCostController@destroy')->name('deleteDirectCost');
 
     //Webbooks
     //companies
