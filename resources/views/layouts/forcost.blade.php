@@ -10,6 +10,11 @@
         </a>
     </li>
     <li class="nav-item" role="presentation">
+        <a class="nav-link" href="{{url('admin/personnel')}}">
+            <div class="tab-title">Personnel</div>
+        </a>
+    </li>
+    <li class="nav-item" role="presentation">
         <a class="nav-link" href="#">
             <div class="tab-title">Expenses</div>
         </a>
